@@ -54,7 +54,6 @@ public class Enemy_Controller : MonoBehaviour
     void FixedUpdate()
     {
         FindPositionOfPlayer();
-        AimRotation();
         switch (currentState)
         {
             case EnemyStates.Idle:
@@ -130,9 +129,11 @@ public class Enemy_Controller : MonoBehaviour
     private IEnumerator AnimateAttack(Attacks attack) //This controls animation part of the attack
     {
         lastLookDir = direction;
-        lastLookDir = SetAnimatorDirection(lastLookDir);
-        animator.SetFloat("LastLookDirX", lastLookDir.x);
-        animator.SetFloat("LastLookDirY", lastLookDir.y);
+        AimRotation();
+        Vector2 temp = direction;
+        temp = SetAnimatorDirection(temp);
+        animator.SetFloat("LastLookDirX", temp.x);
+        animator.SetFloat("LastLookDirY", temp.y);
 
         animator.SetTrigger(attackPerforming.animationTrigger);
 
