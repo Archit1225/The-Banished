@@ -180,10 +180,7 @@ public class Enemy_Controller : MonoBehaviour
 
     public Vector2 GetPredictedPos()
     {
-        float travelTime = distance / attackPerforming.projectileSpeed;
-        Vector2 playerVelocity = playerPos.gameObject.GetComponent<Rigidbody2D>().linearVelocity;
-        Vector2 predictedPos = (Vector2)playerPos.position + playerVelocity;
-        return predictedPos;
+        return playerPos.position;
     }
 
     private Vector2 SetAnimatorDirection(Vector2 dir)

@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
         {
             ChangeState(PlayerStates.Run);
         }
-            moveInput = context.ReadValue<Vector2>();
+        moveInput = context.ReadValue<Vector2>();
         anim.SetFloat("InputX", moveInput.x);
         anim.SetFloat("InputY", moveInput.y);
     }
