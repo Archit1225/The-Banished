@@ -4,8 +4,12 @@ using UnityEngine.InputSystem;
 
 public class InteractionDetector : MonoBehaviour
 {
+    public GameObject iconPrefab;
     private IInteractable interactableInRange;
     private bool interButtonPressed;
+    private bool IconSpawned;
+    private GameObject iconPrefabInstance;
+    private float posOffset = 0.05f;
 
     private void Start()
     {
@@ -18,7 +22,14 @@ public class InteractionDetector : MonoBehaviour
         {
             Debug.Log("Interaction Possible 1");
             interactableInRange = interactable;
-            //Image visible
+            if (collision.CompareTag("NPC") && !IconSpawned)
+            {
+                SpriteRenderer NPCSprite = collision.GetComponent<SpriteRenderer>();
+                Vector3 spriteSize = NPCSprite.size;
+                Vector3 iconPos = new Vector3(NPCSprite.transform.position.x, NPCSprite.transform.position.y + (spriteSize.y / 2) + posOffset, 0);
+                iconPrefabInstance = Instantiate(iconPrefab, iconPos, Quaternion.identity);
+                IconSpawned = true;
+            }
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -27,6 +38,8 @@ public class InteractionDetector : MonoBehaviour
         if(collision.TryGetComponent(out IInteractable interactable) && interactable==interactableInRange)
         {
             interactableInRange = null;
+            IconSpawned=false;
+            if (iconPrefabInstance != null) { Destroy(iconPrefabInstance); }
         }
     }
 
