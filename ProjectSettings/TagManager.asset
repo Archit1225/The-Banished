@@ -48,11 +48,11 @@ TagManager:
   - name: WalkFront
     uniqueID: 235429941
     locked: 0
-  - name: Player
-    uniqueID: 476273161
-    locked: 0
   - name: Collison
     uniqueID: 4201383465
+    locked: 0
+  - name: Player
+    uniqueID: 476273161
     locked: 0
   - name: WalkBehind
     uniqueID: 1754666527

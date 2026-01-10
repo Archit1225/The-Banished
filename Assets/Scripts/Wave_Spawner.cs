@@ -21,19 +21,18 @@ public class Arena
     public string name;
     public Wave[] waves;
     public GameObject bossPrefab;
+    public Transform[] spawnPoints;
     public Transform bossSpawnPoint;
     public UnityEngine.Playables.PlayableDirector postBossCutscene;
 }
 
 public class Wave_Spawner : MonoBehaviour
 {
-    public Transform[] spawnPoints;
-    private Arena currentArena;
-
-
     public static int enemiesAlive;
-    private GameObject arenaBoss;
     public float breathingTime = 2f;
+
+    private GameObject arenaBoss;
+    private Arena currentArena;
 
     public void InitializeArena(Arena currentArena)
     {
@@ -83,7 +82,7 @@ public class Wave_Spawner : MonoBehaviour
         while (i < currentWave.enemyNo)
         {
             GameObject randomEnemy = currentWave.enemyPrefabs[UnityEngine.Random.Range(0, currentWave.enemyPrefabs.Count)];
-            Transform randomPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
+            Transform randomPoint = currentArena.spawnPoints[UnityEngine.Random.Range(0, currentArena.spawnPoints.Length)];
             Instantiate(randomEnemy, randomPoint.position, Quaternion.identity);
             enemiesAlive++;
             i++;

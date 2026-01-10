@@ -1,8 +1,10 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class ActivateArena : MonoBehaviour
 {
     public Arena arenaDetails;
+    public CinemachineCamera cineCam;
 
     private bool hasTriggered = false;
 
@@ -11,6 +13,7 @@ public class ActivateArena : MonoBehaviour
         // 1. Check if the collider belongs to the Player
         if (other.CompareTag("Player") && !hasTriggered)
         {
+            cineCam.Lens.OrthographicSize = 6;
             hasTriggered = true;
 
             // 2. Find the Spawner in the scene
