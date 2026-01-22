@@ -15,3 +15,4 @@ MonoBehaviour:
   enemy_Health: 250
   enemy_Speed: 8
   enemy_Name: Goblin Beast
+  enemyType: 1

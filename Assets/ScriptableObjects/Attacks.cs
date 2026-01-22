@@ -14,5 +14,6 @@ public class Attacks : ScriptableObject
     public GameObject projectilePrefab;
     public float projectileSpeed;
     public float lingering_damage;
+    public AudioClip attackAudio;
 }
 public enum AttackTypes {Ranged, Melee, Lingering};

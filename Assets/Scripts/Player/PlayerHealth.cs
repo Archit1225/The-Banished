@@ -13,16 +13,18 @@ public class PlayerHealth : MonoBehaviour
     private float lingeringTimer;
     private Coroutine lingeringCoroutine;
     private WaitForSeconds oneSecond = new WaitForSeconds(1f);
+    private DamageFlash flashEffect;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentHealth = maxHealth;
+        flashEffect = GetComponent<DamageFlash>();
     }
     private void Update()
     {
-        sfxSlider.value = currentHealth/maxHealth;
+        if (sfxSlider != null) { sfxSlider.value = currentHealth / maxHealth; }
         if (!isAlive)
         {
             gameObject.SetActive(false);
@@ -30,6 +32,9 @@ public class PlayerHealth : MonoBehaviour
     }
     public void ChangeHealth(float health)
     {
+        if (health < 0) {
+            flashEffect.Flash();
+        }
         currentHealth += health;
         if (currentHealth >= maxHealth) {
             currentHealth = maxHealth;

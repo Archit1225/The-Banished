@@ -150,6 +150,11 @@ public class Enemy_Controller : MonoBehaviour
 
     public void AttackPlayer_Melee()
     {
+        //Play Attack Sound
+        if (attackPerforming.attackAudio != null)
+        {
+            AudioManager.instance.PlaySoundFx(attackPerforming.attackAudio, transform, 0.5f);
+        }
         Collider2D playerHit = Physics2D.OverlapCircle(attackPoint.position, attackRange, playerLayer);
         if (playerHit != null && attackPerforming != null)
         {
@@ -161,10 +166,15 @@ public class Enemy_Controller : MonoBehaviour
     {
         Vector2 targetDirection = (GetPredictedPos() - (Vector2)transform.position).normalized;
         GameObject projectile = Instantiate(attackPerforming.projectilePrefab, transform.position, Quaternion.identity);
+
         float angle = Vector2.SignedAngle(Vector2.right, targetDirection);
         projectile.transform.eulerAngles = new Vector3(0, 0, angle);
         projectile.GetComponent<BulletController>().damage = attackPerforming.damage;
         projectile.GetComponent<Rigidbody2D>().linearVelocity = targetDirection * attackPerforming.projectileSpeed;
+        //Play Attack Sound
+        if (attackPerforming.attackAudio != null) {
+            AudioManager.instance.PlaySoundFx(attackPerforming.attackAudio, transform, 0.5f);
+        }
     }
 
     public void AttackPlayer_Linger()

@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - NPC
+  - Enemy
+  - DungeonWalls
+  - Collisions
   layers:
   - Default
   - TransparentFX

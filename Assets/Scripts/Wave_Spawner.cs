@@ -29,7 +29,9 @@ public class Arena
 public class Wave_Spawner : MonoBehaviour
 {
     public static int enemiesAlive;
+    public static bool wavesEnded = false;
     public float breathingTime = 2f;
+    public Animator nextDoorAnim;
 
     private GameObject arenaBoss;
     private Arena currentArena;
@@ -43,22 +45,16 @@ public class Wave_Spawner : MonoBehaviour
     {
         foreach (Wave wave in currentArena.waves)
         {
+            wavesEnded = false;
             yield return StartCoroutine(SpawnWave(wave)); //This ensures the next line is checked after coroutine is completed spawning all enemies
 
             yield return new WaitUntil(CheckIfEnemiesAreDead);
             yield return new WaitForSeconds(breathingTime);
         }
-
-        if (currentArena.bossPrefab != null) {
-            //Play Entry Cutscene
-            arenaBoss = Instantiate(currentArena.bossPrefab, currentArena.bossSpawnPoint.position, Quaternion.identity);
-            yield return new WaitUntil(CheckIfBossIsDead);
-        }
-
-        if(currentArena.postBossCutscene != null)
-        {
-            currentArena.postBossCutscene.Play();
-            yield return new WaitUntil(CheckIfCutsceneIsOver);
+        Debug.Log(enemiesAlive);
+        if (enemiesAlive == 0) { wavesEnded = true; }
+        if (nextDoorAnim != null && wavesEnded) {
+            nextDoorAnim.SetBool("Left", true);
         }
     }
 

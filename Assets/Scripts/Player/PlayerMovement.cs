@@ -9,15 +9,17 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     [SerializeField] private float moveSpeed = 4f;
+    [SerializeField] private ParticleSystem dashParticles;
+    [SerializeField] private AudioClip SwordSlash_Clip;
     private float dashSpeed = 12f;
     public Vector2 moveInput;//stores ongoing/current input of the gamer
     public Vector2 LastmoveInput;//stores last input of the gamer
     public Transform playerFacingTowards;
     private WaitForSeconds waitForSeconds = new WaitForSeconds(0.5f);
     private Animator anim;
-    [SerializeField]
-    private ParticleSystem dashParticles;
+    
     private PlayerStates currentState;
+    private bool isSlashing;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -57,12 +59,24 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Attack(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !isSlashing)
         {
-            anim.SetTrigger("triggerAttack");
-            ChangeState(PlayerStates.Attacking);
+            StartCoroutine(HandleAttack());
         }
     }
+
+    public IEnumerator HandleAttack()
+    {
+        isSlashing = true;
+        anim.SetTrigger("triggerAttack");
+        //Play Slash Sound
+        AudioManager.instance.PlaySoundFx(SwordSlash_Clip, transform, 0.5f);
+        ChangeState(PlayerStates.Attacking);
+
+        yield return new WaitForSeconds(0.767f);
+        isSlashing = false;
+    }
+
     public void Move(InputAction.CallbackContext context)
     {
         if (context.canceled && currentState==PlayerStates.Run)
@@ -83,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
         {
             ChangeState(PlayerStates.Dashing);
             dashParticles.Play();
-            StartCoroutine(Dash());
+            StartCoroutine(Dash_Coroutine());
         }
     }
 
@@ -96,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
         playerFacingTowards.eulerAngles = new Vector3(0, 0, angle);
     }
 
-    public IEnumerator Dash()
+    public IEnumerator Dash_Coroutine()
     {
         rb.linearVelocity = LastmoveInput.normalized * dashSpeed;
         yield return waitForSeconds;

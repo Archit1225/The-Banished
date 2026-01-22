@@ -11,14 +11,18 @@ public class BossArenaCollider : MonoBehaviour
     public CinemachineCamera cineCam;
     public Collider2D mapBoundary2;
     public Light2D globalLight;
+    public Animator bossDoor;
 
+    [System.Obsolete]
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             collision.transform.position += Vector3.up;
+            bossDoor.SetBool("Entered", true);
             boss.SetActive(true);
             cineCam.GetComponent<CinemachineConfiner2D>().BoundingShape2D = mapBoundary2;
+            cineCam.GetComponent<CinemachineConfiner2D>().InvalidateLensCache();
             globalLight.intensity = 0.8f;
             //Camera on boss
             //Pause the game

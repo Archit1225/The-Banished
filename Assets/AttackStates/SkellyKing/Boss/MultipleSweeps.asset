@@ -17,7 +17,9 @@ MonoBehaviour:
   minRange: 0
   maxRange: 2.5
   damage: 30
-  attackCooldown: 3
+  attackCooldown: 2
   attackType: 1
   projectilePrefab: {fileID: 0}
   projectileSpeed: 0
+  lingering_damage: 0
+  attackAudio: {fileID: 8300000, guid: 62279f67c54b2494a9acf97dac0278d3, type: 3}

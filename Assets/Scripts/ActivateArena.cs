@@ -5,14 +5,17 @@ public class ActivateArena : MonoBehaviour
 {
     public Arena arenaDetails;
     public CinemachineCamera cineCam;
+    public Animator animDoor;
 
     private bool hasTriggered = false;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         // 1. Check if the collider belongs to the Player
-        if (other.CompareTag("Player") && !hasTriggered)
+        if (collision.CompareTag("Player") && !hasTriggered)
         {
+            collision.transform.position += gameObject.GetComponent<Collider2D>().transform.up;
+            animDoor.SetBool("Entered", true);
             cineCam.Lens.OrthographicSize = 6;
             hasTriggered = true;
 

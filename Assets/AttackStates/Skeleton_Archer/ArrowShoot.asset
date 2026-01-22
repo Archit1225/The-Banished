@@ -22,3 +22,4 @@ MonoBehaviour:
   projectilePrefab: {fileID: 5750811843439786569, guid: 0f3ce67581268f549bd8169445ee9738, type: 3}
   projectileSpeed: 10
   lingering_damage: 0
+  attackAudio: {fileID: 8300000, guid: 7074bb6797c052d47bee3f0ca55d958a, type: 3}
