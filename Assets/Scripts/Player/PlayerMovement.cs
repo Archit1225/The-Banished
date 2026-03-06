@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
         isSlashing = true;
         anim.SetTrigger("triggerAttack");
         //Play Slash Sound
-        AudioManager.instance.PlaySoundFx(SwordSlash_Clip, transform, 0.5f);
+        AudioManager.instance?.PlaySoundFx(SwordSlash_Clip, transform, 0.5f);
         ChangeState(PlayerStates.Attacking);
 
         yield return new WaitForSeconds(0.767f);

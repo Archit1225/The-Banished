@@ -8,6 +8,9 @@ public class PlayerAttack : MonoBehaviour
     public Animator animator;
     public Transform attackPoint;
     public float attackDamage = 30;
+    public float knockBackForce = 20;
+    public float knockBackTime = 0.5f;
+    public float stunTime = 0.3f;
     [SerializeField]
     private float attackRange;
 
@@ -16,7 +19,8 @@ public class PlayerAttack : MonoBehaviour
         Collider2D[] hitenemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
         foreach (Collider2D enemies in hitenemies)
         {
-            enemies.gameObject.GetComponent<Enemy_Health>().ChangeHealth(-attackDamage); 
+            enemies.gameObject.GetComponent<Enemy_Health>().ChangeHealth(-attackDamage);
+            enemies.gameObject.GetComponent<EnemyKnockback>()?.Knockback(transform, knockBackForce, knockBackTime, stunTime);
         }
     }
 

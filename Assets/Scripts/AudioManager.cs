@@ -1,12 +1,14 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
+    public AudioClip door_close_clip;
+    public AudioClip door_open_clip;
     public static AudioManager instance;
 
     [SerializeField] private AudioSource mediaSource;
-
-
     [SerializeField] private AudioSource soundFxObject;
 
     [Header("Scene Music")]
@@ -16,12 +18,11 @@ public class AudioManager : MonoBehaviour
     {
         if (instance == null) {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
     }
     private void Start()
     {
-        SceneMusic(0);
+        SceneMusic(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void SceneMusic(int sceneNo)
@@ -43,5 +44,14 @@ public class AudioManager : MonoBehaviour
         float audioClip_Length = audioSource.clip.length;
 
         Destroy(audioSource.gameObject, audioClip_Length);
+    }
+
+    public void door_close_sfx()
+    {
+        PlaySoundFx(door_close_clip, transform, 1f);
+    }
+    public void door_open_sfx()
+    {
+        PlaySoundFx(door_open_clip, transform, 1f);
     }
 }

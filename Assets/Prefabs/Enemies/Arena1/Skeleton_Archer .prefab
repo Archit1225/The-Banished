@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 4687493372462183996}
   - component: {fileID: 5493623596382596173}
   - component: {fileID: 6603234067101549048}
+  - component: {fileID: -5950850586535310903}
   m_Layer: 7
   m_Name: 'Skeleton_Archer '
   m_TagString: Enemy
@@ -461,6 +462,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-5950850586535310903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7226575022237189903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f88a9902c8416724a8df343933d8a000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyKnockback
 --- !u!1 &8969008824533117205
 GameObject:
   m_ObjectHideFlags: 0

@@ -55,6 +55,7 @@ public class Wave_Spawner : MonoBehaviour
         if (enemiesAlive == 0) { wavesEnded = true; }
         if (nextDoorAnim != null && wavesEnded) {
             nextDoorAnim.SetBool("Left", true);
+            AudioManager.instance.door_open_sfx();
         }
     }
 

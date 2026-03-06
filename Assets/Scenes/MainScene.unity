@@ -3866,7 +3866,10 @@ MonoBehaviour:
     m_Bits: 128
   animator: {fileID: 451245036}
   attackPoint: {fileID: 872994224}
-  attackDamage: 40
+  attackDamage: 4
+  knockBackForce: 50
+  knockBackTime: 0.5
+  stunTime: 0.3
   attackRange: 0.4
 --- !u!1 &499129512
 GameObject:

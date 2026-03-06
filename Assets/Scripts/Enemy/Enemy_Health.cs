@@ -29,12 +29,17 @@ public class Enemy_Health : MonoBehaviour
             sfxSlider = bossHealthBar_ParentObject.GetComponentInChildren<Slider>();
         }
     }
-    private void Update()
+    void HealthbarFiller()
     {
+        float ratio = currentHealth / maxHealth;
         if (sfxSlider != null)
         {
-            sfxSlider.value = currentHealth / maxHealth;
+            sfxSlider.value = Mathf.Lerp(sfxSlider.value, ratio, 0.1f);
         }
+    }
+    private void Update()
+    {
+        HealthbarFiller();
     }
     public void ChangeHealth(float health)
     {

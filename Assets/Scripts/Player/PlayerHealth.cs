@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour
     public Slider sfxSlider;
     public bool isLingering=false;
 
-    private float maxHealth = 1000;
+    public float maxHealth = 100;
     private bool isAlive = true;
     private float lingeringTimer;
     private Coroutine lingeringCoroutine;
@@ -24,10 +24,15 @@ public class PlayerHealth : MonoBehaviour
     }
     private void Update()
     {
-        if (sfxSlider != null) { sfxSlider.value = currentHealth / maxHealth; }
-        if (!isAlive)
+        HealthbarFiller();
+    }
+
+    void HealthbarFiller()
+    {
+        float ratio = currentHealth / maxHealth;
+        if (sfxSlider != null)
         {
-            gameObject.SetActive(false);
+            sfxSlider.value = Mathf.Lerp(sfxSlider.value, ratio, 0.1f);
         }
     }
     public void ChangeHealth(float health)
@@ -42,6 +47,9 @@ public class PlayerHealth : MonoBehaviour
         else if (currentHealth <= 0) {
             currentHealth = 0;
             Debug.Log("Player Died");
+            sfxSlider.value = 0;
+            gameObject.SetActive(false);
+            //GameOverScreen
             isAlive = false;
         }
     }

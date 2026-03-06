@@ -19,7 +19,12 @@ public class BossArenaCollider : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             collision.transform.position += Vector3.up;
-            bossDoor.SetBool("Entered", true);
+            if (bossDoor != null)
+            {
+                bossDoor.SetBool("Entered", true);
+                AudioManager.instance.door_close_sfx();
+            }
+            else { gameObject.GetComponent<Collider2D>().isTrigger = false; }
             boss.SetActive(true);
             cineCam.GetComponent<CinemachineConfiner2D>().BoundingShape2D = mapBoundary2;
             cineCam.GetComponent<CinemachineConfiner2D>().InvalidateLensCache();

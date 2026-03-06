@@ -54,23 +54,25 @@ public class Enemy_Controller : MonoBehaviour
     void FixedUpdate()
     {
         FindPositionOfPlayer();
-        switch (currentState)
+        if (currentState != EnemyStates.Knockback)
         {
-            case EnemyStates.Idle:
-                Debug.Log("Idle");
-                rb.linearVelocity = Vector2.zero;
-                break;
-
-            case EnemyStates.Chasing:
-                Debug.Log("Chasing");
-                ChasePlayer();
-                break;
-            case EnemyStates.Attacking:
-                if (!isAttackOnCooldown)
-                {
-                    RandomizeAttack();
-                }
-                break;
+            switch (currentState)
+            {
+                case EnemyStates.Idle:
+                    Debug.Log("Idle");
+                    rb.linearVelocity = Vector2.zero;
+                    break;
+                case EnemyStates.Chasing:
+                    Debug.Log("Chasing");
+                    ChasePlayer();
+                    break;
+                case EnemyStates.Attacking:
+                    if (!isAttackOnCooldown)
+                    {
+                        RandomizeAttack();
+                    }
+                    break;
+            }
         }
     }
 
@@ -165,6 +167,9 @@ public class Enemy_Controller : MonoBehaviour
     public void AttackPlayer_Ranged()
     {
         Vector2 targetDirection = (GetPredictedPos() - (Vector2)transform.position).normalized;
+        if (attackPerforming.attackAudio != null) {
+            AudioManager.instance.PlaySoundFx(attackPerforming.attackAudio, transform, 0.2f);
+        }
         GameObject projectile = Instantiate(attackPerforming.projectilePrefab, transform.position, Quaternion.identity);
 
         float angle = Vector2.SignedAngle(Vector2.right, targetDirection);
@@ -172,9 +177,6 @@ public class Enemy_Controller : MonoBehaviour
         projectile.GetComponent<BulletController>().damage = attackPerforming.damage;
         projectile.GetComponent<Rigidbody2D>().linearVelocity = targetDirection * attackPerforming.projectileSpeed;
         //Play Attack Sound
-        if (attackPerforming.attackAudio != null) {
-            AudioManager.instance.PlaySoundFx(attackPerforming.attackAudio, transform, 0.5f);
-        }
     }
 
     public void AttackPlayer_Linger()
@@ -265,4 +267,4 @@ public class Enemy_Controller : MonoBehaviour
         enemyFacePos.eulerAngles = new Vector3(0, 0, angle+90);
     }
 }
-public enum EnemyStates {Idle, Chasing, Attacking}
+public enum EnemyStates {Idle, Chasing, Attacking, Knockback}
