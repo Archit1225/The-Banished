@@ -22948,7 +22948,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 439834857675090133, guid: 7993f611257fe994893bf984541550e8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080634041239474739, guid: 7993f611257fe994893bf984541550e8, type: 3}
+      propertyPath: sfxSlider
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2080634041239474739, guid: 7993f611257fe994893bf984541550e8, type: 3}
       propertyPath: bossHealthBar_ParentObject

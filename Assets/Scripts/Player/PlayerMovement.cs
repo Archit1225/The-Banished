@@ -15,9 +15,13 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 moveInput;//stores ongoing/current input of the gamer
     public Vector2 LastmoveInput;//stores last input of the gamer
     public Transform playerFacingTowards;
+    public float healPower = 20f;
     private WaitForSeconds waitForSeconds = new WaitForSeconds(0.5f);
     private Animator anim;
-    
+    private float healTimer;
+    private float healCooldown = 5f;
+    private PlayerHealth playerHealth;
+
     private PlayerStates currentState;
     private bool isSlashing;
 
@@ -30,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("LastInputX", LastmoveInput.x);
         anim.SetFloat("LastInputY", LastmoveInput.y);
         currentState = PlayerStates.Idle;
+        playerHealth = GetComponent<PlayerHealth>();
+        healTimer = 0;
     }
     void FixedUpdate()
     {
@@ -57,11 +63,31 @@ public class PlayerMovement : MonoBehaviour
         }
         AimRotation();
     }
+    private void Update()
+    {
+        if(healTimer > 0)
+        {
+            healTimer -= Time.deltaTime;
+            Mathf.Clamp(healTimer, 0, healCooldown);
+        }
+    }
     public void Attack(InputAction.CallbackContext context)
     {
         if (context.performed && !isSlashing)
         {
             StartCoroutine(HandleAttack());
+        }
+    }
+
+
+    public void Heal(InputAction.CallbackContext context)
+    {
+        if (context.performed && healTimer<=0)
+        {
+            //Play heal animation
+            Debug.Log("Healing Player");
+            playerHealth.ChangeHealth(healPower);
+            healTimer = healCooldown;
         }
     }
 
@@ -76,7 +102,6 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.767f);
         isSlashing = false;
     }
-
     public void Move(InputAction.CallbackContext context)
     {
         if (context.canceled && currentState==PlayerStates.Run)

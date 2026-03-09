@@ -860,7 +860,7 @@ Transform:
   m_GameObject: {fileID: 166236273}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -65.24, y: 24, z: -10}
+  m_LocalPosition: {x: -65.24, y: 38.92, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -878,7 +878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineConfiner2D
-  BoundingShape2D: {fileID: 1022865128}
+  BoundingShape2D: {fileID: 1888238833}
   Damping: 0.5
   SlowingDistance: 5
   OversizeWindow:
@@ -1083,7 +1083,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &192474355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7305,7 +7305,7 @@ Transform:
   m_GameObject: {fileID: 668154113}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -65.24, y: 24, z: 0}
+  m_LocalPosition: {x: -65.24, y: 38.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10759,7 +10759,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -12333,7 +12333,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 330771293893569614, guid: fa9e32f463f822645a254473896ed3e3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 52.42569
+      value: 45.15
       objectReference: {fileID: 0}
     - target: {fileID: 330771293893569614, guid: fa9e32f463f822645a254473896ed3e3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12842,7 +12842,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1582650776
 AudioSource:
   m_ObjectHideFlags: 0
@@ -24979,7 +24979,7 @@ Transform:
   m_GameObject: {fileID: 1687483606}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -65.07615, y: 26.639807, z: -10}
+  m_LocalPosition: {x: -65.24, y: 38.92, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25459,7 +25459,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!320 &1834815197
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -25555,7 +25555,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
