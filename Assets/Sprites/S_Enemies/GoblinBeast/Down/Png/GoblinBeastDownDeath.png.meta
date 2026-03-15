@@ -135,12 +135,12 @@ TextureImporter:
         width: 26
         height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
       spriteID: a98a332bd7e8d0d90800000000000000
       internalID: -7129885964545840998
@@ -152,17 +152,17 @@ TextureImporter:
       name: GoblinBeastDownDeath_1
       rect:
         serializedVersion: 2
-        x: 60
+        x: 59
         y: 6
-        width: 22
-        height: 30
+        width: 26
+        height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
       spriteID: 603f36dbe8ce257a0800000000000000
       internalID: -6389784823478357242
@@ -174,17 +174,17 @@ TextureImporter:
       name: GoblinBeastDownDeath_2
       rect:
         serializedVersion: 2
-        x: 108
+        x: 106
         y: 6
-        width: 22
-        height: 28
+        width: 26
+        height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
       spriteID: d1f6c1f169d50d350800000000000000
       internalID: 6039429999652269853
@@ -196,17 +196,21 @@ TextureImporter:
       name: GoblinBeastDownDeath_3
       rect:
         serializedVersion: 2
-        x: 156
-        y: 5
-        width: 22
-        height: 17
+        x: 154
+        y: 6
+        width: 26
+        height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
-      tessellationDetail: -1
+      physicsShape:
+      - - {x: -10, y: -16.5}
+        - {x: 11, y: -16.5}
+        - {x: 11, y: -2.5}
+        - {x: -10, y: -2.5}
+      tessellationDetail: 0
       bones: []
       spriteID: 5dc46557cb7551110800000000000000
       internalID: 1230986540089756885
@@ -218,17 +222,21 @@ TextureImporter:
       name: GoblinBeastDownDeath_4
       rect:
         serializedVersion: 2
-        x: 204
+        x: 202
         y: 6
-        width: 22
-        height: 16
+        width: 26
+        height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
-      tessellationDetail: -1
+      physicsShape:
+      - - {x: -10, y: -16.5}
+        - {x: 10, y: -16.5}
+        - {x: 10, y: -1.5}
+        - {x: -10, y: -1.5}
+      tessellationDetail: 0
       bones: []
       spriteID: b109626ec5742bdb0800000000000000
       internalID: -4777677790362824677
@@ -240,17 +248,21 @@ TextureImporter:
       name: GoblinBeastDownDeath_5
       rect:
         serializedVersion: 2
-        x: 252
-        y: 5
-        width: 22
-        height: 17
+        x: 250
+        y: 6
+        width: 26
+        height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
-      tessellationDetail: -1
+      physicsShape:
+      - - {x: -10, y: -17.5}
+        - {x: 10, y: -17.5}
+        - {x: 10, y: -1.5}
+        - {x: -10, y: -1.5}
+      tessellationDetail: 0
       bones: []
       spriteID: 56a140f8721c70b70800000000000000
       internalID: 8865266767149406821
@@ -262,17 +274,21 @@ TextureImporter:
       name: GoblinBeastDownDeath_6
       rect:
         serializedVersion: 2
-        x: 299
-        y: 5
+        x: 298
+        y: 6
         width: 26
-        height: 17
+        height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
-      tessellationDetail: -1
+      physicsShape:
+      - - {x: -11, y: -16.5}
+        - {x: 10, y: -16.5}
+        - {x: 10, y: -2.5}
+        - {x: -11, y: -2.5}
+      tessellationDetail: 0
       bones: []
       spriteID: 9e1bab90108db6310800000000000000
       internalID: 1399449608198468073
@@ -284,17 +300,21 @@ TextureImporter:
       name: GoblinBeastDownDeath_7
       rect:
         serializedVersion: 2
-        x: 348
-        y: 5
-        width: 22
-        height: 17
+        x: 345
+        y: 6
+        width: 26
+        height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
-      tessellationDetail: -1
+      physicsShape:
+      - - {x: -10, y: -17.5}
+        - {x: 11, y: -17.5}
+        - {x: 11, y: -2.5}
+        - {x: -10, y: -2.5}
+      tessellationDetail: 0
       bones: []
       spriteID: d6269d84211de6dc0800000000000000
       internalID: -3643745172034330003
@@ -306,17 +326,17 @@ TextureImporter:
       name: GoblinBeastDownDeath_8
       rect:
         serializedVersion: 2
-        x: 396
-        y: 5
-        width: 22
-        height: 17
+        x: 394
+        y: 6
+        width: 26
+        height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
       spriteID: 4800ce817e6f45240800000000000000
       internalID: 4779716576962936964
@@ -328,17 +348,17 @@ TextureImporter:
       name: GoblinBeastDownDeath_9
       rect:
         serializedVersion: 2
-        x: 444
-        y: 5
-        width: 22
-        height: 17
+        x: 441
+        y: 6
+        width: 26
+        height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
       spriteID: 2f43622af5804f3b0800000000000000
       internalID: -5479745639767722766
@@ -350,7 +370,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 185f48701361e734a8771e319b753e71
     internalID: 0
     vertices: []
     indices: 

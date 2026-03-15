@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 7548054703633351822}
   - component: {fileID: 2738219911334461953}
   - component: {fileID: 272558760870611580}
-  - component: {fileID: 2080634041239474739}
   - component: {fileID: 5095512723163859347}
+  - component: {fileID: 8336271978017701491}
+  - component: {fileID: 2189628380504021352}
   m_Layer: 7
   m_Name: SkellyBoss
   m_TagString: Enemy
@@ -170,21 +171,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2080634041239474739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 439834857675090133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 604dad12859e28749852cce7b697c255, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  currentHealth: 0
-  sfxSlider: {fileID: 0}
-  bossHealthBar_ParentObject: {fileID: 0}
 --- !u!70 &5095512723163859347
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -222,6 +208,36 @@ CapsuleCollider2D:
   m_Offset: {x: 0.16179536, y: -0.7158198}
   m_Size: {x: 1.7464082, y: 2.2283618}
   m_Direction: 0
+--- !u!114 &8336271978017701491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439834857675090133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 690fd41bbf7cea047ad7666d0cf5d5db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Boss_Health
+  currentHealth: 0
+  bossHealthBar_ParentObject: {fileID: 0}
+  pickUpPrefab: {fileID: 6726524993818386849, guid: cf8e31c8ee2ccc14b8e6176548a8a3c6, type: 3}
+  aoESpawner: {fileID: 0}
+--- !u!114 &2189628380504021352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439834857675090133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38e9996da160eba48be3ff6b72e8545b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickUp
+  dropInteraction: {fileID: 0}
+  dropId: SwordPickup
 --- !u!1 &4191365712565697376
 GameObject:
   m_ObjectHideFlags: 0

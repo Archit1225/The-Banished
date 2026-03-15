@@ -12,8 +12,8 @@ public class BossArenaCollider : MonoBehaviour
     public Collider2D mapBoundary2;
     public Light2D globalLight;
     public Animator bossDoor;
+    public Vector3 finalVector = new Vector3(-100, 69, 0);
 
-    [System.Obsolete]
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -50,7 +50,7 @@ public class BossArenaCollider : MonoBehaviour
         //EnemyControllerComponentActive
         Debug.Log("Is this Over??");
         cineCam.Lens.OrthographicSize = 8;
-        boss.transform.position = new Vector3(-100, 69, 0);
+        //boss.transform.position = finalVector;
         boss.GetComponent<Enemy_Controller>().enabled = true;
     }
 

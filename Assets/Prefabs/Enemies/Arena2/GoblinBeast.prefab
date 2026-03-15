@@ -76,8 +76,8 @@ GameObject:
   - component: {fileID: 5352296406758094435}
   - component: {fileID: 3821945589031700400}
   - component: {fileID: 8234511203920344330}
-  - component: {fileID: 3454827175407892427}
   - component: {fileID: 3669776127435704195}
+  - component: {fileID: 7380794354595644128}
   m_Layer: 7
   m_Name: GoblinBeast
   m_TagString: Enemy
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8872330614385934347}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cead6c41ae3b4ed479e9d1156bb89d20, type: 3}
   m_Name: 
@@ -177,7 +177,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0852ac15e362eab4ba1dcd0a61639d96, type: 2}
   animator: {fileID: 3669776127435704195}
   chaseSpeed: 5
-  attackRange: 1.5
+  attackRange: 1
   attackPoint: {fileID: 718998997545192434}
   enemyFacePos: {fileID: 3063336374933491071}
   playerLayer:
@@ -247,21 +247,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.625, y: 2.1875}
   m_Direction: 0
---- !u!114 &3454827175407892427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8872330614385934347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 604dad12859e28749852cce7b697c255, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Health
-  currentHealth: 0
-  sfxSlider: {fileID: 0}
-  bossHealthBar_ParentObject: {fileID: 0}
 --- !u!95 &3669776127435704195
 Animator:
   serializedVersion: 7
@@ -284,3 +269,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7380794354595644128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8872330614385934347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 690fd41bbf7cea047ad7666d0cf5d5db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Boss_Health
+  currentHealth: 0
+  bossHealthBar_ParentObject: {fileID: 0}
+  pickUpPrefab: {fileID: 6726524993818386849, guid: 6294a1c65baa0eb439446e59b853c91c, type: 3}
+  aoESpawner: {fileID: 0}

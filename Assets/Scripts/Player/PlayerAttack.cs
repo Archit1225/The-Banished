@@ -19,7 +19,8 @@ public class PlayerAttack : MonoBehaviour
         Collider2D[] hitenemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
         foreach (Collider2D enemies in hitenemies)
         {
-            enemies.gameObject.GetComponent<Enemy_Health>().ChangeHealth(-attackDamage);
+            enemies.gameObject.GetComponent<Enemy_Health>()?.ChangeHealth(-attackDamage);
+            enemies.gameObject.GetComponent<Boss_Health>()?.ChangeHealth(-attackDamage);
             enemies.gameObject.GetComponent<EnemyKnockback>()?.Knockback(transform, knockBackForce, knockBackTime, stunTime);
         }
     }

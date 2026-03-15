@@ -142,10 +142,10 @@ TextureImporter:
       name: NecromancerDownAttack02_0
       rect:
         serializedVersion: 2
-        x: 160
-        y: 6
-        width: 17
-        height: 36
+        x: 0
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,10 +164,10 @@ TextureImporter:
       name: NecromancerDownAttack02_1
       rect:
         serializedVersion: 2
-        x: 204
-        y: 6
-        width: 26
-        height: 42
+        x: 48
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -186,12 +186,12 @@ TextureImporter:
       name: NecromancerDownAttack02_2
       rect:
         serializedVersion: 2
-        x: 249
-        y: 7
-        width: 33
-        height: 41
+        x: 96
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -208,12 +208,12 @@ TextureImporter:
       name: NecromancerDownAttack02_3
       rect:
         serializedVersion: 2
-        x: 295
-        y: 6
-        width: 36
-        height: 42
+        x: 144
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -227,67 +227,67 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NecromancerDownAttack02_8
+      name: NecromancerDownAttack02_4
       rect:
         serializedVersion: 2
-        x: 11
-        y: 6
-        width: 23
-        height: 33
+        x: 192
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 23fc0b199adbb18f0800000000000000
-      internalID: -568652391940829390
+      spriteID: bf34bce1b1a622041a2c7fee82d4bbbc
+      internalID: 5884466671537840085
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NecromancerDownAttack02_9
+      name: NecromancerDownAttack02_5
       rect:
         serializedVersion: 2
-        x: 62
-        y: 6
-        width: 19
-        height: 33
+        x: 240
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 24f516a4ed0bca220800000000000000
-      internalID: 2498566362060906306
+      spriteID: c16e82f18a6bbdd43835535e3c5d3577
+      internalID: 3277508188121015932
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NecromancerDownAttack02_10
+      name: NecromancerDownAttack02_6
       rect:
         serializedVersion: 2
-        x: 112
-        y: 6
-        width: 16
-        height: 32
+        x: 288
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9990b28ce79989d00800000000000000
-      internalID: 979701688756275609
+      spriteID: 81c3bd1d37ba88e4eb42f60cf9844ed0
+      internalID: -609879653478919772
       vertices: []
       indices: 
       edges: []
@@ -304,22 +304,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       NecromancerDownAttack02_0: -8897173107762662405
       NecromancerDownAttack02_1: 1835782346061767424
-      NecromancerDownAttack02_10: 979701688756275609
-      NecromancerDownAttack02_11: 2044792360389403715
-      NecromancerDownAttack02_12: -2507031181523801028
-      NecromancerDownAttack02_13: -7165195635593278121
       NecromancerDownAttack02_2: -3560523268450214953
       NecromancerDownAttack02_3: -421625789986525509
       NecromancerDownAttack02_4: 5884466671537840085
       NecromancerDownAttack02_5: 3277508188121015932
       NecromancerDownAttack02_6: -609879653478919772
-      NecromancerDownAttack02_7: -5663911724763362106
-      NecromancerDownAttack02_8: -568652391940829390
-      NecromancerDownAttack02_9: 2498566362060906306
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

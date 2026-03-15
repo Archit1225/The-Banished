@@ -174,7 +174,6 @@ public class Enemy_Controller : MonoBehaviour
 
         float angle = Vector2.SignedAngle(Vector2.right, targetDirection);
         projectile.transform.eulerAngles = new Vector3(0, 0, angle);
-        projectile.GetComponent<BulletController>().damage = attackPerforming.damage;
         projectile.GetComponent<Rigidbody2D>().linearVelocity = targetDirection * attackPerforming.projectileSpeed;
         //Play Attack Sound
     }

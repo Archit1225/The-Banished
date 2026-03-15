@@ -9,7 +9,6 @@ public class PlayerHealth : MonoBehaviour
     public bool isLingering=false;
 
     public float maxHealth = 100;
-    private bool isAlive = true;
     private float lingeringTimer;
     private Coroutine lingeringCoroutine;
     private WaitForSeconds oneSecond = new WaitForSeconds(1f);
@@ -46,11 +45,9 @@ public class PlayerHealth : MonoBehaviour
         }
         else if (currentHealth <= 0) {
             currentHealth = 0;
-            Debug.Log("Player Died");
             sfxSlider.value = 0;
+            Debug.Log("Player Died");
             gameObject.SetActive(false);
-            //GameOverScreen
-            isAlive = false;
         }
     }
 

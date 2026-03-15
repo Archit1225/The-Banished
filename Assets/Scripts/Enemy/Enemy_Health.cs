@@ -54,8 +54,11 @@ public class Enemy_Health : MonoBehaviour
             currentHealth = 0;
             //Play Death Animation
             Wave_Spawner.enemiesAlive--;
-            if(enemyType==EnemyType.Boss) //Inactive boss Health Bar
-            { bossHealthBar_ParentObject.SetActive(false); }
+            if(enemyType==EnemyType.Boss) //Inactive boss Health Bar, AoE attack
+            {
+                bossHealthBar_ParentObject.SetActive(false);
+                
+            }
             Destroy(gameObject);
         }
     }

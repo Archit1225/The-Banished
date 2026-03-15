@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3743693400332428629}
   - component: {fileID: 6739551868504819017}
   - component: {fileID: 7657194333223088893}
-  - component: {fileID: -6456233851505789035}
   - component: {fileID: 2608240150511912563}
+  - component: {fileID: 1356494532122601227}
   m_Layer: 0
   m_Name: FireBall
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 5750811843439786569}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.0361, y: -1.3645, z: 0}
+  m_LocalPosition: {x: -5.963, y: -1.3645, z: 0}
   m_LocalScale: {x: 0.5113, y: 0.4918, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -93,7 +93,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!50 &6739551868504819017
 Rigidbody2D:
   serializedVersion: 5
@@ -157,19 +157,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &-6456233851505789035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5750811843439786569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62bc46785a68f394bb2a8c85a7e4cec3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  damage: 0
 --- !u!95 &2608240150511912563
 Animator:
   serializedVersion: 7
@@ -192,3 +179,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1356494532122601227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5750811843439786569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d2946144296b14280aeeeda02e6685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  damage: 40
+  animator: {fileID: 2608240150511912563}
+  explostionRadius: 2
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
