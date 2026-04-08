@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e3b85ba0ef1eac4682a23cb38907d1b, type: 3}
+  m_Name: Necromancer_1
+  m_EditorClassIdentifier: Assembly-CSharp::Dialogues
+  npcName: Necromancer(HURT)
+  npcSprite: {fileID: 2386087392262683051, guid: 22b5220aaa001f74aa6ed0d66f7a9028, type: 3}
+  dialogueLines:
+  - "Stop. Don't waste your breath asking for the way out. There is no path left
+    in these woods. I\u2019ve looked for eighty years... my legs gave out before
+    the forest did."
+  - "Kill me if you like, but it won't open the fog. There is a sunken tomb nearby\u2014a
+    dungeon of bone and filth."
+  - I found the key once, but the skeletons there... they broke my spirit. And my
+    body.
+  - Listen. There are relics in that dark hole. Ancient anchors that hold this forest
+    in a loop. If you have the steel to clear that place, bring the items to me.
+  - I still remember the old rites to break the seal. You be the sword, and I'll
+    be the voice.
+  - It's the only way we aren't buried here.
+  - But I know you won't trust me so take this with you..
+  - This potion will heal you as long as you use it wisely! Best Of Luck...
+  - ....Obtained Magical Potion....
+  typingSpeed: 0.05
+  autoProgressLines: 010101010101010100
+  autoProgressDelay: 1.5

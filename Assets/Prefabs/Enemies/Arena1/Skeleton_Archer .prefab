@@ -361,6 +361,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  attackPerforming: {fileID: 0}
 --- !u!50 &6693193689359906608
 Rigidbody2D:
   serializedVersion: 5
@@ -438,8 +439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Health
   currentHealth: 0
-  sfxSlider: {fileID: 0}
-  bossHealthBar_ParentObject: {fileID: 0}
+  sfxSlider: {fileID: 5578382303930078943}
 --- !u!95 &6603234067101549048
 Animator:
   serializedVersion: 7

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e3b85ba0ef1eac4682a23cb38907d1b, type: 3}
+  m_Name: Necromancer_2
+  m_EditorClassIdentifier: Assembly-CSharp::Dialogues
+  npcName: Necromancer(HURT)
+  npcSprite: {fileID: 2386087392262683051, guid: 22b5220aaa001f74aa6ed0d66f7a9028, type: 3}
+  dialogueLines:
+  - Finally... the weight of centuries... lifted.
+  - You were a quiet tool, weren't you? No questions. No hesitation. Just a loyal
+    hound doing the dirty work I was too 'frail' to manage.
+  - (He slams the pieces together. A purple shockwave knocks the Player back. The
+    Old Man is gone; a towering Wizard in dark robes stands in his place.)
+  - Listen. There are relics in that dark hole. Ancient anchors that hold this forest
+    in a loop. If you have the steel to clear that place, bring the items to me.
+  - The King thought breaking my staff would keep me here forever. He didn't count
+    on a fool like you wandering into my trap.
+  - "To leave this forest, a soul must be left behind to hold the seal. I\u2019ve
+    served my time... now, it\u2019s your turn.\""
+  - (The Wizard raises his glowing staff.)
+  - Don't look so surprised. Every prison needs a Warden. Welcome to your eternity!
+  typingSpeed: 0.05
+  autoProgressLines: 0101010101010100
+  autoProgressDelay: 1.5

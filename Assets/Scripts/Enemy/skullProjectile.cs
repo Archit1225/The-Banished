@@ -5,10 +5,10 @@ public class SkullAttack : MonoBehaviour
 {
     [Header("Settings")]
     public float roamSpeed = 3f;
-    public float dashSpeed = 12f;
+    public float dashSpeed = 20f;
     public float roamRadius = 4f;
-    public int minRoams = 2;
-    public int maxRoams = 5;
+    public int minRoams = 1;
+    public int maxRoams = 6;
     public float damage = 10f;
     public Transform player;
 
@@ -41,7 +41,6 @@ public class SkullAttack : MonoBehaviour
             //Or Explode
             Destroy(gameObject, 1);    
         }
-            
     }
 
     IEnumerator SkullSequence()

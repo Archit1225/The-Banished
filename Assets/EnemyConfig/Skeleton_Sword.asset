@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttributes
   enemy_Health: 40
   enemy_Speed: 3
-  enemy_Name: SkeletonSword
+  enemy_Name: Skeleton King
   enemyType: 0

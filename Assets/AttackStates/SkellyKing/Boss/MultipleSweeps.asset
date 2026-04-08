@@ -16,7 +16,8 @@ MonoBehaviour:
   animationTrigger: MultiSweep
   minRange: 0
   maxRange: 3
-  damage: 30
+  damage: 10
+  knockbackForce: 3
   attackCooldown: 2
   attackType: 1
   projectilePrefab: {fileID: 0}

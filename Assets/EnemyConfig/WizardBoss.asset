@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttributes
   enemy_Health: 300
   enemy_Speed: 7
-  enemy_Name: The Wizard
+  enemy_Name: Necromancer
   enemyType: 1

@@ -12,6 +12,7 @@ public class BossArenaCollider1 : MonoBehaviour
     public Collider2D mapBoundary2;
     public Light2D globalLight;
     public GameObject aoESpawner;
+    public AudioClip bossMusic;
     public Vector3 finalVector = new Vector3(-100, 69, 0);
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -46,6 +47,7 @@ public class BossArenaCollider1 : MonoBehaviour
         cineCam.Lens.OrthographicSize = 8;
         boss.GetComponent<Enemy_Controller>().enabled = true;
         aoESpawner.SetActive(true);
+        AudioManager.instance.PlayBossMusic(bossMusic);
     }
 
     bool CheckIfCutsceneIsOver()

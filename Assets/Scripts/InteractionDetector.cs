@@ -6,7 +6,6 @@ public class InteractionDetector : MonoBehaviour
 {
     public GameObject iconPrefab;
     private IInteractable interactableInRange;
-    private bool interButtonPressed;
     private bool IconSpawned;
     private GameObject iconPrefabInstance;
     private float posOffset = 0.05f;
@@ -47,17 +46,7 @@ public class InteractionDetector : MonoBehaviour
     {
         if (context.performed)
         {
-            Debug.Log("Interaction Possible 3");
-            interButtonPressed = true;
-        }
-    }
-
-    private void Update()
-    {
-        if (interButtonPressed)
-        {
             interactableInRange?.Interact();
-            interButtonPressed = false;
         }
     }
 }   

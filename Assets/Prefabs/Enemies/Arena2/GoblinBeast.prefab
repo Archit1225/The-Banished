@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 8234511203920344330}
   - component: {fileID: 3669776127435704195}
   - component: {fileID: 7380794354595644128}
+  - component: {fileID: -2520133632696697046}
   m_Layer: 7
   m_Name: GoblinBeast
   m_TagString: Enemy
@@ -183,6 +184,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  attackPerforming: {fileID: 0}
 --- !u!50 &3821945589031700400
 Rigidbody2D:
   serializedVersion: 5
@@ -282,6 +284,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boss_Health
   currentHealth: 0
-  bossHealthBar_ParentObject: {fileID: 0}
   pickUpPrefab: {fileID: 6726524993818386849, guid: 6294a1c65baa0eb439446e59b853c91c, type: 3}
+  hurtSound: {fileID: 8300000, guid: ac0065f7ba6f6264bb847afaecd1502f, type: 3}
   aoESpawner: {fileID: 0}
+--- !u!114 &-2520133632696697046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8872330614385934347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f88a9902c8416724a8df343933d8a000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyKnockback

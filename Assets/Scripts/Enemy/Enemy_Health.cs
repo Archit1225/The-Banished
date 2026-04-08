@@ -1,33 +1,26 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using System.Collections;
 
 public class Enemy_Health : MonoBehaviour
 {
     public float currentHealth;
     public Slider sfxSlider;
-    public GameObject bossHealthBar_ParentObject;
     private EnemyType enemyType;
     private float maxHealth;
     private Enemy_Controller controller;
+    private Animator animator;
     private EnemyAttributes enemyAttributes;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        animator = GetComponent<Animator>();    
         controller = GetComponent<Enemy_Controller>();
         enemyAttributes = controller.enemyAttributes;
         maxHealth = enemyAttributes.enemy_Health;
         currentHealth = maxHealth;
         enemyType = enemyAttributes.enemyType;
-        if(enemyType == EnemyType.Boss)
-        {
-            Debug.Log("Health bar activated");
-            bossHealthBar_ParentObject.GetComponentInChildren<TMP_Text>().SetText(enemyAttributes.name);
-            bossHealthBar_ParentObject.SetActive(true);
-            sfxSlider = bossHealthBar_ParentObject.GetComponentInChildren<Slider>();
-        }
     }
     void HealthbarFiller()
     {
@@ -51,22 +44,24 @@ public class Enemy_Health : MonoBehaviour
         }
         else if (currentHealth <= 0)
         {
+            if (!controller.isActiveAndEnabled) { return; }
             currentHealth = 0;
             //Play Death Animation
-            Wave_Spawner.enemiesAlive--;
-            if(enemyType==EnemyType.Boss) //Inactive boss Health Bar, AoE attack
+            animator.ResetTrigger(controller.attackPerforming.animationTrigger);
+            animator.SetTrigger("Death");
+            if (FindAnyObjectByType<Wave_Spawner>() != null)
             {
-                bossHealthBar_ParentObject.SetActive(false);
-                
+                Wave_Spawner.enemiesAlive--;
             }
-            Destroy(gameObject);
+            controller.enabled = false;
+            Destroy(gameObject, 1.5f);
         }
     }
     IEnumerator Coroutine_Red()
     {
+        Color originalColor = gameObject.GetComponentInChildren<SpriteRenderer>().color;
         gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.red;
         yield return new WaitForSeconds(0.2f);
-        gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.white;
-
+        gameObject.GetComponentInChildren<SpriteRenderer>().color = originalColor;
     }
 }

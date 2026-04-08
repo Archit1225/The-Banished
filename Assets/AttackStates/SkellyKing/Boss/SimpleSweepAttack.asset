@@ -17,6 +17,7 @@ MonoBehaviour:
   minRange: 0
   maxRange: 2.5
   damage: 15
+  knockbackForce: 5
   attackCooldown: 2
   attackType: 1
   projectilePrefab: {fileID: 0}

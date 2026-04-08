@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     public float currentHealth;
-    public Slider sfxSlider;
     public bool isLingering=false;
+    public AudioClip hurtSound;
 
     public float maxHealth = 100;
     private float lingeringTimer;
@@ -19,36 +19,33 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        ChangeHealth(maxHealth);
         flashEffect = GetComponent<DamageFlash>();
     }
-    private void Update()
-    {
-        HealthbarFiller();
-    }
-
-    void HealthbarFiller()
+    /*void HealthbarFiller()
     {
         float ratio = currentHealth / maxHealth;
         if (sfxSlider != null)
         {
             sfxSlider.value = Mathf.Lerp(sfxSlider.value, ratio, 0.1f);
         }
-    }
+    }*/
     public void ChangeHealth(float health)
     {
         if (health < 0) {
             flashEffect.Flash();
+            AudioManager.instance.PlaySoundFx(hurtSound, transform, 1f);
         }
         currentHealth += health;
         if (currentHealth >= maxHealth) {
             currentHealth = maxHealth;
         }
         else if (currentHealth <= 0) {
-            currentHealth = 0;
-            sfxSlider.value = 0;
+            UI_Controller.instance.GameOver();
             Debug.Log("Player Died");
             gameObject.SetActive(false);
         }
+        UI_Controller.instance.HealthbarFillerPlayer(currentHealth, maxHealth);
     }
 
     public void LingerHealth(float healthPerSecond, float duration)

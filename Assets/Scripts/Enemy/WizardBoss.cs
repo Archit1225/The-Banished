@@ -11,14 +11,16 @@ public class WizardBoss : MonoBehaviour
     public EnemyAttributes enemyAttributes;
     public List<Attacks> attackMoveset; //Stores all the moveset enemy can use
     public Animator animator;
+    private float contactDamage = 10f;
     public float chaseSpeed; //Speed of enemy
     public float attackRange = 1.5f; //Will be use for OverLap Circle
     //public Transform attackPoint; //Will be used for Overlap Circle
     //public Transform enemyFacePos;
     public LayerMask playerLayer;
 
-    public PlayerHealth playerHealth;
-    public Transform playerPos;
+    public GameObject player;
+    private PlayerHealth playerHealth;
+    private Transform playerPos;
 
     private Rigidbody2D rb;
     public EnemyStates currentState; //Stores the current state of the enemy
@@ -30,6 +32,8 @@ public class WizardBoss : MonoBehaviour
     private Vector2 lastLookDir;
     private List<Attacks> potentialAttacks = new List<Attacks>();
 
+    //EnemySpawning
+    public GameObject[] enemyPrefabs;
 
     //Asteroid Spawning
     public Transform minSpawnPos;
@@ -37,12 +41,26 @@ public class WizardBoss : MonoBehaviour
     public GameObject warningPrefab;
     public GameObject asteroidPrefab;
     public float warningDuration = 1f;
-    private GameObject warning;
+    public int asteroidNumber=10;
 
+    //Asteroid Target
+    public Transform minTargetPos;
+    public Transform maxTargetPos;
+
+    private void OnCollisionStay2D(UnityEngine.Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            playerHealth.ChangeHealth(contactDamage);
+            player.GetComponent<PlayerMovement>().Knockback(transform, 5, 1.5f);
+        }
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerHealth = player.GetComponent<PlayerHealth>();
+        playerPos = player.transform;
         ChangeState(EnemyStates.Chasing);
         distance = Vector2.Distance(transform.position, playerPos.position);
         direction = (playerPos.position - transform.position).normalized;
@@ -161,40 +179,72 @@ public class WizardBoss : MonoBehaviour
         {
             AudioManager.instance.PlaySoundFx(attackPerforming.attackAudio, transform, 0.2f);
         }
-        GameObject projectile = Instantiate(attackPerforming.projectilePrefab, transform.position, Quaternion.identity);
+        for (int i = -1; i <= 1; i++)
+        {
+            Vector3 spawnPos = transform.position + new Vector3(i, 1, 0);
+            GameObject projectile = Instantiate(attackPerforming.projectilePrefab, spawnPos, Quaternion.identity);
+        }
     }
-    public IEnumerator SpawnAsteroid()
+    public IEnumerator SpawnAsteroidCoroutine()
     {
         //Choose the targetPos - Player Pos
-        Transform targetPos = playerPos;
-        float randX = Random.Range(minSpawnPos.position.x, maxSpawnPos.position.x);
-        float randY = Random.Range(minSpawnPos.position.y, maxSpawnPos.position.y);
-        Vector3 spawnPos = new Vector3(randX, randY, 0);
+        //Vector3 targetPos = playerPos.position;
+        List<Vector3> targetPositions = new List<Vector3>();
+        List<Vector3> spawnPositions = new List<Vector3>();
+        List<GameObject> activeWarnings = new List<GameObject>();
+        Vector3 trueWorldSize = new Vector3();
 
-        //Spawn Warning
         CircleCollider2D obstacleCollider = asteroidPrefab.GetComponent<CircleCollider2D>();
-        warning = Instantiate(warningPrefab, targetPos.position, Quaternion.identity);
-
         if (obstacleCollider != null)
         {
             float diameter = obstacleCollider.radius * 2f;
             Vector2 localSize = new Vector2(diameter, diameter);
 
-            Vector2 trueWorldSize = Vector2.Scale(localSize, asteroidPrefab.transform.localScale);
+            trueWorldSize = Vector2.Scale(localSize, asteroidPrefab.transform.localScale);
+        }
 
-            warning.transform.localScale = trueWorldSize;
-        }
-        yield return new WaitForSeconds(warningDuration);
-        Destroy(warning);
-        GameObject asteroidInstance = Instantiate(asteroidPrefab, spawnPos, Quaternion.identity);
-        if (spawnPos.x > targetPos.position.x)
+        for (int i = 1; i <= asteroidNumber; i++)
         {
-            asteroidInstance.transform.localScale *= -1;
-            Debug.Log("On your Right");
+            GameObject warning;
+            float targetX = Random.Range(minTargetPos.position.x, maxTargetPos.position.x);
+            float targetY = Random.Range(minTargetPos.position.y, maxTargetPos.position.y);
+            Vector3 targetPos = new Vector3(targetX, targetY, 0);
+
+            float randX = Random.Range(minSpawnPos.position.x, maxSpawnPos.position.x);
+            float randY = Random.Range(minSpawnPos.position.y, maxSpawnPos.position.y);
+            Vector3 spawnPos = new Vector3(randX, randY, 0);
+
+            warning = Instantiate(warningPrefab, targetPos, Quaternion.identity);
+            warning.transform.localScale = trueWorldSize;
+            targetPositions.Add(targetPos);
+            spawnPositions.Add(spawnPos);
+            activeWarnings.Add(warning);
         }
-        asteroidInstance.GetComponent<Asteroid>().targetPos = targetPos.position;
+
+        yield return new WaitForSeconds(warningDuration);
+        for (int i = 0; i < activeWarnings.Count; i++)
+        {
+            Destroy(activeWarnings[i]);
+            GameObject asteroidInstance = Instantiate(asteroidPrefab, spawnPositions[i], Quaternion.identity);
+            if (spawnPositions[i].x > targetPositions[i].x)
+            {
+                asteroidInstance.transform.localScale *= -1;
+                Debug.Log("On your Right");
+            }
+            asteroidInstance.GetComponent<Asteroid>().targetPos = targetPositions[i];
+        }
     }
 
+    public void SpawnEnemy()
+    {
+        int randIndex = Random.Range(0, enemyPrefabs.Length);
+
+        //Spawn Enemy and get back
+        GameObject enemy = Instantiate(enemyPrefabs[randIndex], transform.position, Quaternion.identity);
+        SpriteRenderer sprite = enemy.GetComponent<SpriteRenderer>();
+        sprite.color = new Color(1f, 1f, 1f, 0.5f);
+        enemy.GetComponent<Enemy_Health>().currentHealth = 1;
+    }
     private Vector2 SetAnimatorDirection(Vector2 dir)
     {
         float x = 0;
@@ -246,5 +296,6 @@ public class WizardBoss : MonoBehaviour
     {
         return currentState;
     }
+
 }
 

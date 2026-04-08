@@ -8,7 +8,7 @@ public class PlayerAttack : MonoBehaviour
     public Animator animator;
     public Transform attackPoint;
     public float attackDamage = 30;
-    public float knockBackForce = 20;
+    public float knockBackForce = 10;
     public float knockBackTime = 0.5f;
     public float stunTime = 0.3f;
     [SerializeField]
@@ -21,6 +21,7 @@ public class PlayerAttack : MonoBehaviour
         {
             enemies.gameObject.GetComponent<Enemy_Health>()?.ChangeHealth(-attackDamage);
             enemies.gameObject.GetComponent<Boss_Health>()?.ChangeHealth(-attackDamage);
+            enemies.gameObject.GetComponent<WizardHealth>()?.ChangeHealth(-attackDamage);
             enemies.gameObject.GetComponent<EnemyKnockback>()?.Knockback(transform, knockBackForce, knockBackTime, stunTime);
         }
     }
@@ -32,10 +33,5 @@ public class PlayerAttack : MonoBehaviour
             return;
         }
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
-        //Gizmos.DrawWireSphere(-attackPoint.position, attackRange);
-        //Vector2 attackPositionYP = new Vector2(0, attackPoint.position.x);
-        //Vector2 attackPositionYN = new Vector2(0, -attackPoint.position.x);
-        //Gizmos.DrawWireSphere(attackPositionYP, attackRange);
-        //Gizmos.DrawWireSphere(attackPositionYN, attackRange);
     }
 }

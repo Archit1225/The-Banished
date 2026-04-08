@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5095512723163859347}
   - component: {fileID: 8336271978017701491}
   - component: {fileID: 2189628380504021352}
+  - component: {fileID: -307946556527383549}
   m_Layer: 7
   m_Name: SkellyBoss
   m_TagString: Enemy
@@ -149,6 +150,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  attackPerforming: {fileID: 0}
 --- !u!95 &272558760870611580
 Animator:
   serializedVersion: 7
@@ -221,8 +223,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boss_Health
   currentHealth: 0
-  bossHealthBar_ParentObject: {fileID: 0}
   pickUpPrefab: {fileID: 6726524993818386849, guid: cf8e31c8ee2ccc14b8e6176548a8a3c6, type: 3}
+  hurtSound: {fileID: 8300000, guid: ac0065f7ba6f6264bb847afaecd1502f, type: 3}
   aoESpawner: {fileID: 0}
 --- !u!114 &2189628380504021352
 MonoBehaviour:
@@ -238,6 +240,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PickUp
   dropInteraction: {fileID: 0}
   dropId: SwordPickup
+--- !u!114 &-307946556527383549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439834857675090133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f88a9902c8416724a8df343933d8a000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyKnockback
 --- !u!1 &4191365712565697376
 GameObject:
   m_ObjectHideFlags: 0

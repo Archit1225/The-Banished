@@ -10,44 +10,50 @@ public class Enemy_Controller : MonoBehaviour
     public EnemyAttributes enemyAttributes;
     public List<Attacks> attackMoveset; //Stores all the moveset enemy can use
     public Animator animator;
-    public float chaseSpeed; //Speed of enemy |||||
+    public float chaseSpeed; //Speed of enemy 
     public float attackRange=1.5f; //Will be use for OverLap Circle
     public Transform attackPoint; //Will be used for Overlap Circle
     public Transform enemyFacePos;
     public LayerMask playerLayer;
+    public Attacks attackPerforming; //Stores the attack the enemy is going to perform
 
     private PlayerHealth playerHealth;
+    private PlayerMovement playerMovement;
     private Transform playerPos;
 
     private Rigidbody2D rb;
     private EnemyStates currentState; //Stores the current state of the enemy
-    private Attacks attackPerforming; //Stores the attack the enemy is going to perform
     private float distance; //Stores the distance between player and enemy
     private Vector2 direction; //Stores the direction between player and enemy
-    private bool isAttackOnCooldown; //Stores whether the enemy is on cooldown or not
-    private float MaxRange=0;
+    private bool isAttackOnCooldown=false; //Stores whether the enemy is on cooldown or not
+    //private float MaxRange=0;
     private Vector2 lastLookDir;
-    private List<Attacks> potentialAttacks = new List<Attacks>();
+    //private List<Attacks> potentialAttacks = new List<Attacks>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        playerHealth = player.GetComponent<PlayerHealth>();
-        playerPos = player.GetComponent<Transform>();
+        if (player != null)
+        {
+            playerHealth = player.GetComponent<PlayerHealth>();
+            playerPos = player.GetComponent<Transform>();
+            playerMovement = player.GetComponent<PlayerMovement>();
+        }
         ChangeState(EnemyStates.Chasing);
         distance = Vector2.Distance(transform.position, playerPos.position);
         direction = (playerPos.position - transform.position).normalized;
         chaseSpeed = enemyAttributes.enemy_Speed;
+        AttackRandomizer();
 
-        foreach (Attacks attack in attackMoveset)
+        /*foreach (Attacks attack in attackMoveset)
         {
             if(attack.maxRange > MaxRange)
             {
                 MaxRange = attack.maxRange;
             }
-        }
+        }*/
     }
 
     // Update is called once per frame
@@ -64,12 +70,15 @@ public class Enemy_Controller : MonoBehaviour
                     break;
                 case EnemyStates.Chasing:
                     Debug.Log("Chasing");
-                    ChasePlayer();
+                    ChasingPlayer();
+                    //ChasePlayer();
                     break;
                 case EnemyStates.Attacking:
                     if (!isAttackOnCooldown)
                     {
-                        RandomizeAttack();
+                        StartCoroutine(AnimateAttack(attackPerforming));
+                        isAttackOnCooldown = true;
+                        //RandomizeAttack();
                     }
                     break;
             }
@@ -88,7 +97,7 @@ public class Enemy_Controller : MonoBehaviour
         }
     }
 
-    private void ChasePlayer() //Chases PLayer + Also holds logic for whether the enemy should attack the player 
+    /*private void ChasePlayer() //Chases PLayer + Also holds logic for whether the enemy should attack the player 
     {
         if (distance < MaxRange)
         {
@@ -98,10 +107,19 @@ public class Enemy_Controller : MonoBehaviour
         Debug.Log("Moving");
         transform.position = Vector2.MoveTowards(transform.position, playerPos.position, chaseSpeed * Time.deltaTime);
         Debug.Log("Moving2");
+    }*/
 
+    private void ChasingPlayer()
+    {
+        if (distance < attackPerforming.maxRange)
+        {
+            ChangeState(EnemyStates.Attacking);
+            return;
+        }
+        transform.position = Vector2.MoveTowards(transform.position, playerPos.position, chaseSpeed * Time.deltaTime);
     }
 
-    public void RandomizeAttack()
+    /*public void RandomizeAttack()
     {
         potentialAttacks.Clear();
         foreach (Attacks attack in attackMoveset)
@@ -126,6 +144,15 @@ public class Enemy_Controller : MonoBehaviour
         {
             ChangeState(EnemyStates.Chasing);
         }
+    }*/
+
+    public void AttackRandomizer()
+    {
+        Debug.Log("Size of potential Attacks = " + attackMoveset.Count);
+        int randomIndex = Random.Range(0, attackMoveset.Count);
+        Debug.Log("Random index = " + randomIndex);
+        attackPerforming = attackMoveset[randomIndex];
+        //StartCoroutine(AnimateAttack(attackPerforming));
     }
 
     private IEnumerator AnimateAttack(Attacks attack) //This controls animation part of the attack
@@ -160,6 +187,7 @@ public class Enemy_Controller : MonoBehaviour
         Collider2D playerHit = Physics2D.OverlapCircle(attackPoint.position, attackRange, playerLayer);
         if (playerHit != null && attackPerforming != null)
         {
+            playerMovement.Knockback(transform, attackPerforming.knockbackForce, 0.8f);
             playerHealth.ChangeHealth(-attackPerforming.damage);
         }
     }
@@ -175,7 +203,6 @@ public class Enemy_Controller : MonoBehaviour
         float angle = Vector2.SignedAngle(Vector2.right, targetDirection);
         projectile.transform.eulerAngles = new Vector3(0, 0, angle);
         projectile.GetComponent<Rigidbody2D>().linearVelocity = targetDirection * attackPerforming.projectileSpeed;
-        //Play Attack Sound
     }
 
     public void AttackPlayer_Linger()
@@ -214,12 +241,14 @@ public class Enemy_Controller : MonoBehaviour
 
     private void HandleIdle()
     {
+        AttackRandomizer();
         if (playerPos != null){
-            if(distance > MaxRange)
+            if(distance > attackPerforming.maxRange)
                 ChangeState(EnemyStates.Chasing);
             else 
                 ChangeState(EnemyStates.Attacking);
         }
+        if (playerHealth.currentHealth <= 0) ChangeState(EnemyStates.Idle);
     }
 
     public void ChangeState(EnemyStates newState)

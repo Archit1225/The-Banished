@@ -9,6 +9,7 @@ public class Attacks : ScriptableObject
     public float minRange;
     public float maxRange;
     public float damage;
+    public float knockbackForce;
     public float attackCooldown;
     public AttackTypes attackType;
     public GameObject projectilePrefab;

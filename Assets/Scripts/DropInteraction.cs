@@ -17,6 +17,8 @@ public class DropInteraction : MonoBehaviour
 
         public List<Collider2D> collidersToTRIGGER;
         public List<Collider2D> collidersToUNTRIGGER;
+
+        public AudioClip audioClip;
     }
 
     public List<DropAction> dropActions = new List<DropAction>();
@@ -62,6 +64,11 @@ public class DropInteraction : MonoBehaviour
 
             foreach (string boolName in action.animatorBoolsToDisable)
                 action.animator.SetBool(boolName, false);
+        }
+
+        if (action.audioClip != null)
+        {
+            AudioManager.instance.PlaySoundFx(action.audioClip, transform, 1f);
         }
     }
 }

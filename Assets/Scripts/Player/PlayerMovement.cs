@@ -1,9 +1,8 @@
 using System.Collections;
-using Unity.Burst.Intrinsics;
-using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR.Haptics;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,7 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 moveInput;//stores ongoing/current input of the gamer
     public Vector2 LastmoveInput;//stores last input of the gamer
     public Transform playerFacingTowards;
-    public float healPower = 20f;
+    //public Slider healSlider;
+    public float healPower = 30f;
     private WaitForSeconds waitForSeconds = new WaitForSeconds(0.5f);
     private Animator anim;
     private float healTimer;
@@ -59,6 +59,8 @@ public class PlayerMovement : MonoBehaviour
                 break;
             case PlayerStates.Dashing:
                 break;
+            case PlayerStates.Knockback:
+                break;
             
         }
         AimRotation();
@@ -70,6 +72,11 @@ public class PlayerMovement : MonoBehaviour
             healTimer -= Time.deltaTime;
             Mathf.Clamp(healTimer, 0, healCooldown);
         }
+        if (GameManager.Instance.talkedToWizard_1)
+        {
+            UI_Controller.instance.UpdateHealCooldown(healTimer, healCooldown);
+        }
+        //if(healSlider!=null) healSlider.value = healTimer / healCooldown;
     }
     public void Attack(InputAction.CallbackContext context)
     {
@@ -82,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Heal(InputAction.CallbackContext context)
     {
+        if (!GameManager.Instance.talkedToWizard_1) return;
         if (context.performed && healTimer<=0)
         {
             //Play heal animation
@@ -125,6 +133,25 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(Dash_Coroutine());
         }
     }
+    public IEnumerator Dash_Coroutine()
+    {
+        rb.linearVelocity = LastmoveInput.normalized * dashSpeed;
+        yield return waitForSeconds;
+        CheckMovementKeys();
+    }
+    public void CheckMovementKeys()
+    {
+        if (moveInput != Vector2.zero)
+        {
+            ChangeState(PlayerStates.Run);
+        }
+        else
+        {
+            // The player has let go of the keys during the dash
+            ChangeState(PlayerStates.Idle);
+            rb.linearVelocity = Vector2.zero;
+        }
+    }
 
     void AimRotation()
     {
@@ -135,13 +162,20 @@ public class PlayerMovement : MonoBehaviour
         playerFacingTowards.eulerAngles = new Vector3(0, 0, angle);
     }
 
-    public IEnumerator Dash_Coroutine()
+    public void Knockback(Transform enemy, float knockbackForce, float stunTime)
     {
-        rb.linearVelocity = LastmoveInput.normalized * dashSpeed;
-        yield return waitForSeconds;
-        ChangeState(PlayerStates.Idle);
-        rb.linearVelocity = Vector2.zero;
+        ChangeState(PlayerStates.Knockback);
+        Vector2 enemyDirection = (transform.position - enemy.position).normalized;
+        rb.linearVelocity = enemyDirection * knockbackForce;
+        StartCoroutine(knockbackCounter(stunTime));
     }
+
+    public IEnumerator knockbackCounter(float stunTime)
+    {
+        yield return new WaitForSeconds(stunTime);
+        CheckMovementKeys();
+    }
+
     public void ChangeState(PlayerStates newState)
     {
         // Reset all bools first
@@ -154,6 +188,7 @@ public class PlayerMovement : MonoBehaviour
         switch (newState)
         {
             case PlayerStates.Idle: anim.SetBool("isIdle", true); break;
+            case PlayerStates.Knockback: anim.SetBool("isIdle", true); break;
             case PlayerStates.Run: anim.SetBool("isRunning", true); break;
             case PlayerStates.Attacking: anim.SetBool("isAttacking", true); break;
             case PlayerStates.Dashing: anim.SetBool("isDashing", true); break;
@@ -161,7 +196,7 @@ public class PlayerMovement : MonoBehaviour
         currentState = newState;
     }
 }
-public enum PlayerStates {Idle, Run, Attacking, Dashing};
+public enum PlayerStates {Idle, Run, Attacking, Dashing, Knockback};
 /*Idle will be dfault State
  * Run animation will be played if
  * 2.Move keys are used
