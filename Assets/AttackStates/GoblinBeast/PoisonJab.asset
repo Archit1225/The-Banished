@@ -16,9 +16,11 @@ MonoBehaviour:
   animationTrigger: PoisonJab
   minRange: 0
   maxRange: 2
-  damage: 20
+  damage: 30
+  knockbackForce: 0
   attackCooldown: 3
   attackType: 2
   projectilePrefab: {fileID: 0}
   projectileSpeed: 0
   lingering_damage: 2
+  attackAudio: {fileID: 0}

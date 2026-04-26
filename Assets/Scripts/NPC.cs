@@ -6,16 +6,13 @@ using UnityEngine.SceneManagement; // Added to handle Scene changing
 
 public class OldManNPC : MonoBehaviour, IInteractable
 {
-    /*[Header("UI Elements")]
-    public TMP_Text dialogueText, nameText;
-    public GameObject dialoguePanel;
-    public Image portraitImage;*/
     public Collider2D gateCollider1;
     public AudioClip powerUpAudio;
-
+    public GameObject flashBang;
     [Header("Dialogue States")]
     public Dialogues introDialogue;
     public Dialogues betrayalDialogue;
+    private bool dialoguesDone=false;
 
     private Dialogues currentDialogueData;
 
@@ -24,7 +21,7 @@ public class OldManNPC : MonoBehaviour, IInteractable
 
     public bool CanInteract()
     {
-        return !isDialogueActive;
+        return !isDialogueActive && !dialoguesDone;
     }
 
     public void Interact()
@@ -64,10 +61,6 @@ public class OldManNPC : MonoBehaviour, IInteractable
         isDialogueActive = true;
         dialogueIndex = 0;
 
-        /*nameText.SetText(currentDialogueData.npcName);
-        portraitImage.sprite = currentDialogueData.npcSprite;
-
-        dialoguePanel.SetActive(true);*/
         UI_Controller.instance.SetDialogueBox(currentDialogueData);
 
         StartCoroutine(TypeLine());
@@ -138,7 +131,8 @@ public class OldManNPC : MonoBehaviour, IInteractable
         }
         if (currentDialogueData == betrayalDialogue)
         {
-            SceneManager.LoadScene("DimensionX");
+            dialoguesDone = true;
+            flashBang.SetActive(true);
         }
     }
 }

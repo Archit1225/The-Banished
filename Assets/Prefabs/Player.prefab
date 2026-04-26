@@ -277,7 +277,7 @@ MonoBehaviour:
     m_Bits: 128
   animator: {fileID: 7294605375160598346}
   attackPoint: {fileID: 524396402949882141}
-  attackDamage: 40
+  attackDamage: 15
   knockBackForce: 10
   knockBackTime: 0.2
   stunTime: 0.2
@@ -5134,6 +5134,7 @@ GameObject:
   - component: {fileID: 4853768735597896190}
   - component: {fileID: 483951916114893676}
   - component: {fileID: 287517956868473822}
+  - component: {fileID: 7557530284255390846}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -5201,6 +5202,7 @@ MonoBehaviour:
   moveSpeed: 5
   dashParticles: {fileID: 1572662166214059844}
   SwordSlash_Clip: {fileID: 8300000, guid: 59e0d4a9dbc2bee488d8ebc4109d0eca, type: 3}
+  healUse: {fileID: 8300000, guid: 19cfa5c5154bace4aa6ba32c7c8ae9a5, type: 3}
   moveInput: {x: 0, y: 0}
   LastmoveInput: {x: 0, y: 0}
   playerFacingTowards: {fileID: 2202787787425194790}
@@ -5247,10 +5249,6 @@ MonoBehaviour:
     m_ActionId: 351f2ccd-1f9f-44bf-9bec-d62ac5c5f408
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6b444451-8a00-4d00-a97e-f47457f736a8
-    m_ActionName: 'Player/Look[/Mouse/delta]'
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 643574139416792115}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
@@ -5282,14 +5280,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 852140f2-7766-474d-8707-702459ba45f3
     m_ActionName: 'Player/Interact[/Keyboard/e]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 27c5f898-bc57-4ee1-8800-db469aca5fe3
-    m_ActionName: 'Player/Crouch[/Keyboard/c]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f1ba0d36-48eb-4cd5-b651-1c94a6531f70
-    m_ActionName: 'Player/Jump[/Keyboard/space]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 2776c80d-3c14-4091-8c56-d04ced07a2b0
@@ -5335,26 +5325,6 @@ MonoBehaviour:
     m_ActionId: 3c7022bf-7922-4f7c-a998-c437916075ad
     m_ActionName: 'UI/Click[/Mouse/leftButton]'
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 44b200b1-1557-4083-816c-b22cbdf77ddf
-    m_ActionName: 'UI/RightClick[/Mouse/rightButton]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: dad70c86-b58c-4b17-88ad-f5e53adf419e
-    m_ActionName: 'UI/MiddleClick[/Mouse/middleButton]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0489e84a-4833-4c40-bfae-cea84b696689
-    m_ActionName: 'UI/ScrollWheel[/Mouse/scroll]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 24908448-c609-4bc3-a128-ea258674378a
-    m_ActionName: UI/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
-    m_ActionName: UI/TrackedDeviceOrientation
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 643574139416792115}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
@@ -5370,6 +5340,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ba6f72c6-3a75-4691-b7c0-5b3d152e9ebd
     m_ActionName: 'Player/Heal[/Keyboard/x]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2067316757553809534}
+        m_TargetAssemblyTypeName: InteractionDetector, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ec1053bd-a7d3-4d12-8e9f-d9f61bf0884a
+    m_ActionName: 'UI/Interact[/Keyboard/e]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 
@@ -5427,7 +5413,7 @@ MonoBehaviour:
   currentHealth: 0
   isLingering: 0
   hurtSound: {fileID: 8300000, guid: c58c4914ac51b9f4eb3085999b4f72d4, type: 3}
-  maxHealth: 1000
+  maxHealth: 100
 --- !u!114 &287517956868473822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5442,5 +5428,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageFLash
   flashMaterial: {fileID: 2100000, guid: fd431cf5cef60f642bab0b895b372cde, type: 2}
   defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  flashDuration: 0.5
+  flashDuration: 0.25
   spriteRenderer: {fileID: 2648323462429013472}
+--- !u!114 &7557530284255390846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7929584804067564870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 350caeba170ebc74d8b8fc61a4d9fb19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  playerInput: {fileID: 2580494546562701542}
+  playerMovement: {fileID: 643574139416792115}
+  rb: {fileID: 5340969611450431992}

@@ -8,6 +8,7 @@ public class UI_Controller : MonoBehaviour
 {
     public static UI_Controller instance;
     public GameObject gameOverPanel;
+    public GameObject gameWinPanel;
 
     public GameObject bossHealthBar_ParentObject;
     private Slider enemyHealthBar;
@@ -22,6 +23,8 @@ public class UI_Controller : MonoBehaviour
     public TMP_Text nameText;
     public GameObject dialoguePanel;
     public Image portraitImage;
+    public GameObject infoPanel;
+    public TMP_Text infoText;
 
     private Coroutine playerHealthCoroutine;
     private Coroutine enemyHealthCoroutine;
@@ -39,7 +42,13 @@ public class UI_Controller : MonoBehaviour
     public void GameOver()
     {
         gameOverPanel.SetActive(true);
-        playerUI.SetActive(false);
+        //playerUI.SetActive(false);
+        //Pause The Game
+    }
+    public void GameWon()
+    {
+        gameWinPanel.SetActive(true);
+        //playerUI.SetActive(false);
         //Pause The Game
     }
 
@@ -47,6 +56,7 @@ public class UI_Controller : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameOverPanel.SetActive(false);
+        gameWinPanel.SetActive(false);
         DisableBossUI();
     }
     public void StartGame()
@@ -72,6 +82,7 @@ public class UI_Controller : MonoBehaviour
         bossHealthBar_ParentObject.SetActive(true);
         bossHealthBar_ParentObject.GetComponentInChildren<TMP_Text>().SetText(bossName);
         enemyHealthBar = bossHealthBar_ParentObject.GetComponentInChildren<Slider>();
+        enemyHealthBar.value = 1f;
     }
     public void DisableBossUI()
     {
@@ -125,6 +136,7 @@ public class UI_Controller : MonoBehaviour
         nameText.SetText(dialogueData.npcName);
         portraitImage.sprite = dialogueData.npcSprite;
         dialoguePanel.SetActive(true);
+        GameStateManager.instance.ChangeState(GameStateManager.GameState.Dialogue);
     }
 
     public void SetDialogueText(string text)
@@ -136,5 +148,24 @@ public class UI_Controller : MonoBehaviour
     {
         SetDialogueText("");
         dialoguePanel.SetActive(false);
+        GameStateManager.instance.ChangeState(GameStateManager.GameState.Gameplay);
+    }
+    //INFO BOX
+    public void SetInfoBox(Dialogues dialogueData)
+    {
+        GameStateManager.instance.ChangeState(GameStateManager.GameState.Dialogue);
+        infoPanel.SetActive(true);
+    }
+
+    public void SetInfoText(string text)
+    {
+        infoText.SetText(text);
+    }
+
+    public void CloseInfoDialogueBox()
+    {
+        SetInfoText("");
+        infoPanel.SetActive(false);
+        GameStateManager.instance.ChangeState(GameStateManager.GameState.Gameplay);
     }
 }

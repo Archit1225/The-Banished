@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 3669776127435704195}
   - component: {fileID: 7380794354595644128}
   - component: {fileID: -2520133632696697046}
+  - component: {fileID: 1316739934121729930}
   m_Layer: 7
   m_Name: GoblinBeast
   m_TagString: Enemy
@@ -299,3 +300,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f88a9902c8416724a8df343933d8a000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyKnockback
+--- !u!114 &1316739934121729930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8872330614385934347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f176d4f8d1ae44c9c247aae2eb6362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageFLash
+  flashMaterial: {fileID: 2100000, guid: fd431cf5cef60f642bab0b895b372cde, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  flashDuration: 0.25
+  spriteRenderer: {fileID: 4574645728558214065}

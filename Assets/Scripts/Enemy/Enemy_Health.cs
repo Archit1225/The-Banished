@@ -7,19 +7,25 @@ public class Enemy_Health : MonoBehaviour
     public float currentHealth;
     public Slider sfxSlider;
     private EnemyType enemyType;
-    private float maxHealth;
+    public float maxHealth;
     private Enemy_Controller controller;
     private Animator animator;
     private EnemyAttributes enemyAttributes;
+    private DamageFlash flashEffect;
+    private bool isMinion = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         animator = GetComponent<Animator>();    
         controller = GetComponent<Enemy_Controller>();
+        flashEffect = GetComponent<DamageFlash>();
         enemyAttributes = controller.enemyAttributes;
-        maxHealth = enemyAttributes.enemy_Health;
-        currentHealth = maxHealth;
+        if (!isMinion)
+        {
+            maxHealth = enemyAttributes.enemy_Health;
+            currentHealth = maxHealth;
+        }
         enemyType = enemyAttributes.enemyType;
     }
     void HealthbarFiller()
@@ -37,7 +43,7 @@ public class Enemy_Health : MonoBehaviour
     public void ChangeHealth(float health)
     {
         currentHealth += health;
-        if (health < 0) { StartCoroutine(Coroutine_Red()); }
+        if (health < 0) { flashEffect.Flash(); }
         if (currentHealth >= maxHealth)
         {
             currentHealth = maxHealth;
@@ -54,14 +60,18 @@ public class Enemy_Health : MonoBehaviour
                 Wave_Spawner.enemiesAlive--;
             }
             controller.enabled = false;
-            Destroy(gameObject, 1.5f);
         }
     }
-    IEnumerator Coroutine_Red()
+
+    public void SetSpiritHealth()
     {
-        Color originalColor = gameObject.GetComponentInChildren<SpriteRenderer>().color;
-        gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.red;
-        yield return new WaitForSeconds(0.2f);
-        gameObject.GetComponentInChildren<SpriteRenderer>().color = originalColor;
+        isMinion = true;
+        maxHealth = 1f;
+        currentHealth = 1f;
+
+        if (sfxSlider != null)
+        {
+            sfxSlider.value = 1f;
+        }
     }
 }

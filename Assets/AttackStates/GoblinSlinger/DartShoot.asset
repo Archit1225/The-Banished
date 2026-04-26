@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5a5a1c08a2bee24291d1a639f2662e6, type: 3}
-  m_Name: ArrowShoot
+  m_Name: DartShoot
   m_EditorClassIdentifier: Assembly-CSharp::Attacks
   AttackName: DartShoot
   animationTrigger: DartShoot
   minRange: 0
   maxRange: 5
   damage: 20
-  attackCooldown: 1
+  knockbackForce: 0
+  attackCooldown: 2
   attackType: 0
   projectilePrefab: {fileID: 5750811843439786569, guid: b6f9b13ffdd56fb4fa751d104ec84a06, type: 3}
   projectileSpeed: 10
   lingering_damage: 0
+  attackAudio: {fileID: 0}

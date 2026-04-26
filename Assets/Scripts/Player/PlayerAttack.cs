@@ -1,11 +1,9 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
     public LayerMask enemyLayer;
-    public Animator animator;
     public Transform attackPoint;
     public float attackDamage = 30;
     public float knockBackForce = 10;
@@ -26,12 +24,12 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        if(attackPoint == null)
-        {
-            return;
-        }
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
-    }
+    //private void OnDrawGizmosSelected()
+    //{
+    //    if(attackPoint == null)
+    //    {
+    //        return;
+    //    }
+    //    Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    //}
 }

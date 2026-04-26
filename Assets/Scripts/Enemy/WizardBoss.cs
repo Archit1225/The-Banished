@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Net.Mime;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class WizardBoss : MonoBehaviour
 {
@@ -32,27 +33,29 @@ public class WizardBoss : MonoBehaviour
     private Vector2 lastLookDir;
     private List<Attacks> potentialAttacks = new List<Attacks>();
 
-    //EnemySpawning
+    
+    [Header("Enemy Spawning")]
     public GameObject[] enemyPrefabs;
+    public int spawningEnemiesNo=4;
 
-    //Asteroid Spawning
+    [Header("Asteroid Spawning")]
     public Transform minSpawnPos;
     public Transform maxSpawnPos;
     public GameObject warningPrefab;
     public GameObject asteroidPrefab;
     public float warningDuration = 1f;
     public int asteroidNumber=10;
-
-    //Asteroid Target
     public Transform minTargetPos;
     public Transform maxTargetPos;
 
-    private void OnCollisionStay2D(UnityEngine.Collision2D collision)
+    //Asteroid Target
+
+    private void OnCollisionEnter2D(UnityEngine.Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             playerHealth.ChangeHealth(contactDamage);
-            player.GetComponent<PlayerMovement>().Knockback(transform, 5, 1.5f);
+            player.GetComponent<PlayerMovement>().Knockback(transform, 5, 0.7f);
         }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -237,13 +240,15 @@ public class WizardBoss : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        int randIndex = Random.Range(0, enemyPrefabs.Length);
-
-        //Spawn Enemy and get back
-        GameObject enemy = Instantiate(enemyPrefabs[randIndex], transform.position, Quaternion.identity);
-        SpriteRenderer sprite = enemy.GetComponent<SpriteRenderer>();
-        sprite.color = new Color(1f, 1f, 1f, 0.5f);
-        enemy.GetComponent<Enemy_Health>().currentHealth = 1;
+        for (int i=1; i<=spawningEnemiesNo; i++) {
+            int randIndex = Random.Range(0, enemyPrefabs.Length);
+            Vector2 spawnPoint = Random.insideUnitCircle.normalized;
+            //Spawn Enemy and get back
+            GameObject enemy = Instantiate(enemyPrefabs[randIndex], transform.position, Quaternion.identity);
+            SpriteRenderer sprite = enemy.GetComponent<SpriteRenderer>();
+            sprite.color = new Color(1f, 1f, 1f, 0.8f);
+            enemy.GetComponent<Enemy_Health>().SetSpiritHealth();
+        }
     }
     private Vector2 SetAnimatorDirection(Vector2 dir)
     {

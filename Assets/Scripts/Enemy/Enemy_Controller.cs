@@ -187,7 +187,7 @@ public class Enemy_Controller : MonoBehaviour
         Collider2D playerHit = Physics2D.OverlapCircle(attackPoint.position, attackRange, playerLayer);
         if (playerHit != null && attackPerforming != null)
         {
-            playerMovement.Knockback(transform, attackPerforming.knockbackForce, 0.8f);
+            playerMovement.Knockback(transform, attackPerforming.knockbackForce, 0.3f);
             playerHealth.ChangeHealth(-attackPerforming.damage);
         }
     }
@@ -274,7 +274,7 @@ public class Enemy_Controller : MonoBehaviour
         return currentState;
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         if (attackPoint == null)
         {

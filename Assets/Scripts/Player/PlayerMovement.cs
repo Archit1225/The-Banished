@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private ParticleSystem dashParticles;
     [SerializeField] private AudioClip SwordSlash_Clip;
+    [SerializeField] private AudioClip healUse;
     private float dashSpeed = 12f;
     public Vector2 moveInput;//stores ongoing/current input of the gamer
     public Vector2 LastmoveInput;//stores last input of the gamer
@@ -42,8 +43,9 @@ public class PlayerMovement : MonoBehaviour
         if(moveInput != Vector2.zero)
         {
             LastmoveInput = moveInput;
-            anim.SetFloat("LastInputX", LastmoveInput.x);
-            anim.SetFloat("LastInputY", LastmoveInput.y);
+            Vector2 temp = SetAnimatorDirection(LastmoveInput);
+            anim.SetFloat("LastInputX", temp.x);
+            anim.SetFloat("LastInputY", temp.y);
         }
 
         switch (currentState)
@@ -94,11 +96,28 @@ public class PlayerMovement : MonoBehaviour
         {
             //Play heal animation
             Debug.Log("Healing Player");
+            AudioManager.instance.PlaySoundFx(healUse, transform, 1f);
             playerHealth.ChangeHealth(healPower);
             healTimer = healCooldown;
         }
     }
+    private Vector2 SetAnimatorDirection(Vector2 dir)
+    {
+        float x = 0;
+        float y = 0;
 
+        if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
+        {
+            x = dir.x > 0 ? 1f : -1f;
+            y = 0f;
+        }
+        else
+        {
+            y = dir.y > 0 ? 1f : -1f;
+            x = 0f;
+        }
+        return new Vector2(x, y);
+    }
     public IEnumerator HandleAttack()
     {
         isSlashing = true;
@@ -194,6 +213,13 @@ public class PlayerMovement : MonoBehaviour
             case PlayerStates.Dashing: anim.SetBool("isDashing", true); break;
         }
         currentState = newState;
+    }
+
+    public void ClearInputs()
+    {
+        moveInput = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;   
+        ChangeState(PlayerStates.Idle);
     }
 }
 public enum PlayerStates {Idle, Run, Attacking, Dashing, Knockback};

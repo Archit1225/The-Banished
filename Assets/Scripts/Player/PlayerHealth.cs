@@ -43,6 +43,7 @@ public class PlayerHealth : MonoBehaviour
         else if (currentHealth <= 0) {
             UI_Controller.instance.GameOver();
             Debug.Log("Player Died");
+            //Something else other than disabling
             gameObject.SetActive(false);
         }
         UI_Controller.instance.HealthbarFillerPlayer(currentHealth, maxHealth);

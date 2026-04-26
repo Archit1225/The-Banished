@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8336271978017701491}
   - component: {fileID: 2189628380504021352}
   - component: {fileID: -307946556527383549}
+  - component: {fileID: 3202881749032378489}
   m_Layer: 7
   m_Name: SkellyBoss
   m_TagString: Enemy
@@ -252,6 +253,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f88a9902c8416724a8df343933d8a000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyKnockback
+--- !u!114 &3202881749032378489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439834857675090133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f176d4f8d1ae44c9c247aae2eb6362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageFLash
+  flashMaterial: {fileID: 2100000, guid: fd431cf5cef60f642bab0b895b372cde, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  flashDuration: 0.25
+  spriteRenderer: {fileID: 6791563158751078888}
 --- !u!1 &4191365712565697376
 GameObject:
   m_ObjectHideFlags: 0

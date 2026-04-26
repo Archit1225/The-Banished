@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 4830485741906832264}
   - component: {fileID: 6428009655286363865}
   - component: {fileID: 6612518144651564138}
+  - component: {fileID: 2509838962896812868}
   m_Layer: 7
   m_Name: Goblin_Slinger
   m_TagString: Enemy
@@ -187,7 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Controller
   enemyAttributes: {fileID: 11400000, guid: 012a979bb26a90045a9febc87380b0a9, type: 2}
   attackMoveset:
-  - {fileID: 11400000, guid: 298d42ba6f3ddfd4497fb8fadc4a38aa, type: 2}
+  - {fileID: 11400000, guid: ce5014aa72ef0344da641b8558c64f32, type: 2}
   animator: {fileID: 6428009655286363865}
   chaseSpeed: 3
   attackRange: 0.4
@@ -196,6 +197,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  attackPerforming: {fileID: 0}
 --- !u!50 &208691350620181605
 Rigidbody2D:
   serializedVersion: 5
@@ -273,8 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Health
   currentHealth: 0
-  sfxSlider: {fileID: 0}
-  bossHealthBar_ParentObject: {fileID: 0}
+  sfxSlider: {fileID: 7950511560209644959}
 --- !u!95 &6428009655286363865
 Animator:
   serializedVersion: 7
@@ -309,6 +310,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f88a9902c8416724a8df343933d8a000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyKnockback
+--- !u!114 &2509838962896812868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036601888864807489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f176d4f8d1ae44c9c247aae2eb6362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageFLash
+  flashMaterial: {fileID: 2100000, guid: fd431cf5cef60f642bab0b895b372cde, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  flashDuration: 0.25
+  spriteRenderer: {fileID: 1055830434939128984}
 --- !u!1 &2487224966656074304
 GameObject:
   m_ObjectHideFlags: 0

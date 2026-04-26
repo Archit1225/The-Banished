@@ -26,6 +26,10 @@ public class PickUp : MonoBehaviour, IInteractable
         string sceneName = SceneManager.GetActiveScene().name;
         Debug.Log(sceneName + " cleared!");
         //Destroy the gameobject
+        if (dropId == "WizardStaff")
+        {
+            UI_Controller.instance.GameWon();
+        }
         Destroy(gameObject);
     }
 }

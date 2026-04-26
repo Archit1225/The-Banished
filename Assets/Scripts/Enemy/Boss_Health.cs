@@ -14,6 +14,7 @@ public class Boss_Health : MonoBehaviour
     private Enemy_Controller controller;
     private Animator bossAnim;
     private EnemyAttributes enemyAttributes;
+    private DamageFlash flashEffect;
     [SerializeField] private GameObject aoESpawner;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,6 +22,7 @@ public class Boss_Health : MonoBehaviour
     {
         bossAnim = GetComponent<Animator>();    
         controller = GetComponent<Enemy_Controller>();
+        flashEffect = GetComponent<DamageFlash>();
         enemyAttributes = controller.enemyAttributes;
         maxHealth = enemyAttributes.enemy_Health;
         currentHealth = maxHealth;
@@ -46,7 +48,7 @@ public class Boss_Health : MonoBehaviour
     {
         currentHealth += health;
         if (health < 0) { 
-            StartCoroutine(Coroutine_Red());
+            flashEffect.Flash();
             AudioManager.instance.PlaySoundFx(hurtSound, transform, 0.8f);
         }
         if (currentHealth >= maxHealth)
@@ -55,17 +57,9 @@ public class Boss_Health : MonoBehaviour
         }
         else if (currentHealth <= 0)
         {
+            if (!controller.isActiveAndEnabled) { return; }
             currentHealth = 0;
             OnBossDeath();
-        }
-    }
-    IEnumerator Coroutine_Red()
-    {
-        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null) {
-            spriteRenderer.color = Color.red;
-            yield return new WaitForSeconds(0.2f);
-            spriteRenderer.color = Color.white;
         }
     }
 

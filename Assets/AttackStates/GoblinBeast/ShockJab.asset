@@ -16,9 +16,11 @@ MonoBehaviour:
   animationTrigger: ShockJab
   minRange: 0
   maxRange: 2
-  damage: 25
+  damage: 35
+  knockbackForce: 0
   attackCooldown: 2
   attackType: 1
   projectilePrefab: {fileID: 0}
   projectileSpeed: 0
   lingering_damage: 0
+  attackAudio: {fileID: 0}

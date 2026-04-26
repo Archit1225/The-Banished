@@ -34,6 +34,11 @@ public class Wave_Spawner : MonoBehaviour
     private GameObject arenaBoss;
     private Arena currentArena;
 
+    private void Awake()
+    {
+        enemiesAlive = 0;
+        wavesEnded = false;
+    }
     public void InitializeArena(Arena currentArena)
     {
         this.currentArena = currentArena;
@@ -79,7 +84,7 @@ public class Wave_Spawner : MonoBehaviour
             GameObject randomEnemy = currentWave.enemyPrefabs[UnityEngine.Random.Range(0, currentWave.enemyPrefabs.Count)];
             Transform randomPoint = currentArena.spawnPoints[UnityEngine.Random.Range(0, currentArena.spawnPoints.Length)];
             GameObject spawnFlame = Instantiate(spawnFlamePrefab, randomPoint.position, Quaternion.identity);
-            Instantiate(randomEnemy, randomPoint.position, Quaternion.identity);
+            Instantiate(randomEnemy, randomPoint.position, Quaternion.identity); 
             enemiesAlive++;
             i++;
             yield return new WaitForSeconds(currentWave.spawnInterval);
