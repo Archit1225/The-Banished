@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private float healTimer;
     private float healCooldown = 5f;
+    private float playerAttackCooldown = 0.65f;
     private PlayerHealth playerHealth;
 
     private PlayerStates currentState;
@@ -126,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
         AudioManager.instance?.PlaySoundFx(SwordSlash_Clip, transform, 0.5f);
         ChangeState(PlayerStates.Attacking);
 
-        yield return new WaitForSeconds(0.767f);
+        yield return new WaitForSeconds(playerAttackCooldown);
         isSlashing = false;
     }
     public void Move(InputAction.CallbackContext context)

@@ -30,6 +30,7 @@ public class WizardHealth : MonoBehaviour
         if (health < 0) { 
             StartCoroutine(Coroutine_Red());
             AudioManager.instance.PlaySoundFx(wizardHurtSound, transform, 0.7f);
+            wizardController.Teleport(0.5f);
         }
         if (currentHealth >= maxHealth)
         {

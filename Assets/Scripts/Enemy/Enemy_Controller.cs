@@ -40,10 +40,10 @@ public class Enemy_Controller : MonoBehaviour
             playerHealth = player.GetComponent<PlayerHealth>();
             playerPos = player.GetComponent<Transform>();
             playerMovement = player.GetComponent<PlayerMovement>();
+            ChangeState(EnemyStates.Chasing);
+            distance = Vector2.Distance(transform.position, playerPos.position);
+            direction = (playerPos.position - transform.position).normalized;
         }
-        ChangeState(EnemyStates.Chasing);
-        distance = Vector2.Distance(transform.position, playerPos.position);
-        direction = (playerPos.position - transform.position).normalized;
         chaseSpeed = enemyAttributes.enemy_Speed;
         AttackRandomizer();
 
@@ -60,7 +60,7 @@ public class Enemy_Controller : MonoBehaviour
     void FixedUpdate()
     {
         FindPositionOfPlayer();
-        if (currentState != EnemyStates.Knockback)
+        if (currentState != EnemyStates.Knockback && playerPos!=null)
         {
             switch (currentState)
             {

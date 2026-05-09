@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 5262204592150366976}
   - component: {fileID: 4982584389325016505}
   - component: {fileID: 2067316757553809534}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: InteractionDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,10 +275,8 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  animator: {fileID: 7294605375160598346}
   attackPoint: {fileID: 524396402949882141}
   attackDamage: 15
-  knockBackForce: 10
   knockBackTime: 0.2
   stunTime: 0.2
   attackRange: 0.5
@@ -5444,4 +5442,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   playerInput: {fileID: 2580494546562701542}
   playerMovement: {fileID: 643574139416792115}
-  rb: {fileID: 5340969611450431992}

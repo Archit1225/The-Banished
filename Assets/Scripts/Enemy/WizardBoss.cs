@@ -36,7 +36,7 @@ public class WizardBoss : MonoBehaviour
     
     [Header("Enemy Spawning")]
     public GameObject[] enemyPrefabs;
-    public int spawningEnemiesNo=4;
+    public int spawningEnemiesNo=2;
 
     [Header("Asteroid Spawning")]
     public Transform minSpawnPos;
@@ -104,6 +104,16 @@ public class WizardBoss : MonoBehaviour
         }
     }
 
+    public void Teleport(float chance)
+    {
+        if (Random.Range(0f, 1f) < chance)
+        {
+            float teleportX = Random.Range(minTargetPos.position.x, maxTargetPos.position.x);
+            float teleportY = Random.Range(minTargetPos.position.y, maxTargetPos.position.y);
+            transform.position = new Vector3(teleportX, teleportY);
+        }
+    }
+
     private void FindPositionOfPlayer()
     {
         if (playerPos != null)
@@ -168,6 +178,7 @@ public class WizardBoss : MonoBehaviour
         Debug.Log(attackPerforming.AttackName);
 
         ChangeState(EnemyStates.Idle);
+        Teleport(0.2f);
 
         yield return new WaitForSeconds(attack.attackCooldown);
 

@@ -6,7 +6,6 @@ public class PlayerAttack : MonoBehaviour
     public LayerMask enemyLayer;
     public Transform attackPoint;
     public float attackDamage = 30;
-    public float knockBackForce = 10;
     public float knockBackTime = 0.5f;
     public float stunTime = 0.3f;
     [SerializeField]
@@ -20,7 +19,7 @@ public class PlayerAttack : MonoBehaviour
             enemies.gameObject.GetComponent<Enemy_Health>()?.ChangeHealth(-attackDamage);
             enemies.gameObject.GetComponent<Boss_Health>()?.ChangeHealth(-attackDamage);
             enemies.gameObject.GetComponent<WizardHealth>()?.ChangeHealth(-attackDamage);
-            enemies.gameObject.GetComponent<EnemyKnockback>()?.Knockback(transform, knockBackForce, knockBackTime, stunTime);
+            enemies.gameObject.GetComponent<EnemyKnockback>()?.Knockback(transform, knockBackTime, stunTime);
         }
     }
 

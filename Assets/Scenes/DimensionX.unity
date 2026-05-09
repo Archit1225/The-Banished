@@ -19371,7 +19371,7 @@ GameObject:
   - component: {fileID: 1543397977}
   m_Layer: 0
   m_Name: Collision
-  m_TagString: Untagged
+  m_TagString: Collisions
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25709,7 +25709,7 @@ MonoBehaviour:
   - {fileID: 7226575022237189903, guid: 1a115a60913598844a57dea5ced62500, type: 3}
   - {fileID: 8036371126034187756, guid: d3951c4b59c4f4b45894c02eaeda5ac7, type: 3}
   - {fileID: 2036601888864807489, guid: 7bb0823a5b896ad40b7c57b247c2fe8b, type: 3}
-  spawningEnemiesNo: 4
+  spawningEnemiesNo: 2
   minSpawnPos: {fileID: 976517334}
   maxSpawnPos: {fileID: 1423794665}
   warningPrefab: {fileID: 2629904072006241376, guid: efdd745541e349f42ac5cce2fad426a7, type: 3}
@@ -25904,6 +25904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f88a9902c8416724a8df343933d8a000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyKnockback
+  knockBackForce: 20
 --- !u!1001 &2127835079
 PrefabInstance:
   m_ObjectHideFlags: 0
