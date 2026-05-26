@@ -5205,6 +5205,8 @@ MonoBehaviour:
   LastmoveInput: {x: 0, y: 0}
   playerFacingTowards: {fileID: 2202787787425194790}
   healPower: 20
+  dashSpeed: 25
+  dashWaitTime: 0.1
 --- !u!114 &2580494546562701542
 MonoBehaviour:
   m_ObjectHideFlags: 0

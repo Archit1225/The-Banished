@@ -56,7 +56,6 @@ public class Enemy_Controller : MonoBehaviour
         }*/
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         FindPositionOfPlayer();
@@ -85,6 +84,7 @@ public class Enemy_Controller : MonoBehaviour
         }
     }
 
+    //Controls States of Enemies
     private void FindPositionOfPlayer()
     {
         if (playerPos != null)
@@ -97,18 +97,6 @@ public class Enemy_Controller : MonoBehaviour
         }
     }
 
-    /*private void ChasePlayer() //Chases PLayer + Also holds logic for whether the enemy should attack the player 
-    {
-        if (distance < MaxRange)
-        {
-            ChangeState(EnemyStates.Attacking);
-            return;
-        }
-        Debug.Log("Moving");
-        transform.position = Vector2.MoveTowards(transform.position, playerPos.position, chaseSpeed * Time.deltaTime);
-        Debug.Log("Moving2");
-    }*/
-
     private void ChasingPlayer()
     {
         if (distance < attackPerforming.maxRange)
@@ -119,32 +107,64 @@ public class Enemy_Controller : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, playerPos.position, chaseSpeed * Time.deltaTime);
     }
 
-    /*public void RandomizeAttack()
+    public Vector2 GetPredictedPos()
     {
-        potentialAttacks.Clear();
-        foreach (Attacks attack in attackMoveset)
-        {
-            if (distance < attack.maxRange && distance >= attack.minRange)
-            {
-                Debug.Log("Attack");
-                potentialAttacks.Add(attack);
-            }
-        }
+        return playerPos.position;
+    }
 
-        if(potentialAttacks.Count > 0) 
+    private Vector2 SetAnimatorDirection(Vector2 dir)
+    {
+        float x = 0;
+        float y = 0;
+
+        if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
         {
-            isAttackOnCooldown = true;
-            Debug.Log("Size of potential Attacks = " + potentialAttacks.Count);
-            int randomIndex = Random.Range(0, potentialAttacks.Count);
-            Debug.Log("Random index = " +  randomIndex);
-            attackPerforming = potentialAttacks[randomIndex];
-            StartCoroutine(AnimateAttack(attackPerforming));
+            x = dir.x > 0 ? 1f : -1f;
+            y = 0f;
         }
         else
         {
-            ChangeState(EnemyStates.Chasing);
+            y = dir.y > 0 ? 1f : -1f;
+            x = 0f;
         }
-    }*/
+        return new Vector2(x, y);
+    }
+
+    public void ChangeState(EnemyStates newState)
+    {
+        // Reset all bools first
+        animator.SetBool("isIdle", false);
+        animator.SetBool("isChasing", false);
+        animator.SetBool("isAttacking", false);
+
+        // Set the correct one
+        switch (newState)
+        {
+            case EnemyStates.Idle: animator.SetBool("isIdle", true); break;
+            case EnemyStates.Chasing: animator.SetBool("isChasing", true); break;
+            case EnemyStates.Attacking: animator.SetBool("isAttacking", true); break;
+        }
+
+        currentState = newState;
+    }
+
+    public EnemyStates GetEnemyState()
+    {
+        return currentState;
+    }
+
+    //Attacks
+    private void HandleIdle()
+    {
+        AttackRandomizer();
+        if (playerPos != null){
+            if(distance > attackPerforming.maxRange)
+                ChangeState(EnemyStates.Chasing);
+            else
+                ChangeState(EnemyStates.Attacking);
+        }
+        if (playerHealth.currentHealth <= 0) ChangeState(EnemyStates.Idle);
+    }
 
     public void AttackRandomizer()
     {
@@ -215,65 +235,6 @@ public class Enemy_Controller : MonoBehaviour
             playerHealth.LingerHealth(-attackPerforming.lingering_damage, 10f);
         }
     }
-
-    public Vector2 GetPredictedPos()
-    {
-        return playerPos.position;
-    }
-
-    private Vector2 SetAnimatorDirection(Vector2 dir)
-    {
-        float x = 0;
-        float y = 0;
-
-        if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
-        {
-            x = dir.x > 0 ? 1f : -1f;
-            y = 0f;
-        }
-        else
-        {
-            y = dir.y > 0 ? 1f : -1f;
-            x = 0f;
-        }
-        return new Vector2(x, y);
-    }
-
-    private void HandleIdle()
-    {
-        AttackRandomizer();
-        if (playerPos != null){
-            if(distance > attackPerforming.maxRange)
-                ChangeState(EnemyStates.Chasing);
-            else 
-                ChangeState(EnemyStates.Attacking);
-        }
-        if (playerHealth.currentHealth <= 0) ChangeState(EnemyStates.Idle);
-    }
-
-    public void ChangeState(EnemyStates newState)
-    {
-        // Reset all bools first
-        animator.SetBool("isIdle", false);
-        animator.SetBool("isChasing", false);
-        animator.SetBool("isAttacking", false);
-
-        // Set the correct one
-        switch (newState)
-        {
-            case EnemyStates.Idle: animator.SetBool("isIdle", true); break;
-            case EnemyStates.Chasing: animator.SetBool("isChasing", true); break;
-            case EnemyStates.Attacking: animator.SetBool("isAttacking", true); break;
-        }
-
-        currentState = newState;
-    }
-
-    public EnemyStates GetEnemyState()
-    {
-        return currentState;
-    }
-
     private void OnDrawGizmos()
     {
         if (attackPoint == null)
@@ -294,5 +255,42 @@ public class Enemy_Controller : MonoBehaviour
         float angle = Vector2.SignedAngle(Vector2.right, lastLookDir);
         enemyFacePos.eulerAngles = new Vector3(0, 0, angle+90);
     }
+    /*public void RandomizeAttack()
+    {
+        potentialAttacks.Clear();
+        foreach (Attacks attack in attackMoveset)
+        {
+            if (distance < attack.maxRange && distance >= attack.minRange)
+            {
+                Debug.Log("Attack");
+                potentialAttacks.Add(attack);
+            }
+        }
+
+        if(potentialAttacks.Count > 0) 
+        {
+            isAttackOnCooldown = true;
+            Debug.Log("Size of potential Attacks = " + potentialAttacks.Count);
+            int randomIndex = Random.Range(0, potentialAttacks.Count);
+            Debug.Log("Random index = " +  randomIndex);
+            attackPerforming = potentialAttacks[randomIndex];
+            StartCoroutine(AnimateAttack(attackPerforming));
+        }
+        else
+        {
+            ChangeState(EnemyStates.Chasing);
+        }
+    }*/
+    /*private void ChasePlayer() //Chases PLayer + Also holds logic for whether the enemy should attack the player 
+    {
+        if (distance < MaxRange)
+        {
+            ChangeState(EnemyStates.Attacking);
+            return;
+        }
+        Debug.Log("Moving");
+        transform.position = Vector2.MoveTowards(transform.position, playerPos.position, chaseSpeed * Time.deltaTime);
+        Debug.Log("Moving2");
+    }*/
 }
 public enum EnemyStates {Idle, Chasing, Attacking, Knockback}

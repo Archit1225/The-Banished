@@ -22,14 +22,6 @@ public class PlayerHealth : MonoBehaviour
         ChangeHealth(maxHealth);
         flashEffect = GetComponent<DamageFlash>();
     }
-    /*void HealthbarFiller()
-    {
-        float ratio = currentHealth / maxHealth;
-        if (sfxSlider != null)
-        {
-            sfxSlider.value = Mathf.Lerp(sfxSlider.value, ratio, 0.1f);
-        }
-    }*/
     public void ChangeHealth(float health)
     {
         if (health < 0) {

@@ -11,16 +11,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private ParticleSystem dashParticles;
     [SerializeField] private AudioClip SwordSlash_Clip;
     [SerializeField] private AudioClip healUse;
-    private float dashSpeed = 12f;
     public Vector2 moveInput;//stores ongoing/current input of the gamer
     public Vector2 LastmoveInput;//stores last input of the gamer
     public Transform playerFacingTowards;
     //public Slider healSlider;
     public float healPower = 30f;
-    private WaitForSeconds waitForSeconds = new WaitForSeconds(0.5f);
+    [SerializeField] private float dashSpeed = 12f;
+    [SerializeField] private float dashWaitTime = 0.5f;
     private Animator anim;
-    private float healTimer;
-    private float healCooldown = 5f;
+    private float healTimer = 0, healCooldown = 8f;
+    private float dashTimer = 0, dashCoolDown = 1f;
     private float playerAttackCooldown = 0.65f;
     private PlayerHealth playerHealth;
 
@@ -37,11 +37,10 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("LastInputY", LastmoveInput.y);
         currentState = PlayerStates.Idle;
         playerHealth = GetComponent<PlayerHealth>();
-        healTimer = 0;
     }
     void FixedUpdate()
     {
-        if(moveInput != Vector2.zero)
+        if(moveInput != Vector2.zero && currentState!=PlayerStates.Dashing)
         {
             LastmoveInput = moveInput;
             Vector2 temp = SetAnimatorDirection(LastmoveInput);
@@ -75,6 +74,11 @@ public class PlayerMovement : MonoBehaviour
             healTimer -= Time.deltaTime;
             Mathf.Clamp(healTimer, 0, healCooldown);
         }
+        if(dashTimer > 0)
+        {
+            dashTimer -= Time.deltaTime;
+            Mathf.Clamp(dashTimer, 0, dashCoolDown);
+        }
         if (GameManager.Instance.talkedToWizard_1)
         {
             UI_Controller.instance.UpdateHealCooldown(healTimer, healCooldown);
@@ -88,8 +92,6 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(HandleAttack());
         }
     }
-
-
     public void Heal(InputAction.CallbackContext context)
     {
         if (!GameManager.Instance.talkedToWizard_1) return;
@@ -146,17 +148,18 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void Dash(InputAction.CallbackContext context) {
-        if (context.performed)
+        if (context.performed && dashTimer<=0)
         {
             ChangeState(PlayerStates.Dashing);
             dashParticles.Play();
+            dashTimer = dashCoolDown;
             StartCoroutine(Dash_Coroutine());
         }
     }
     public IEnumerator Dash_Coroutine()
     {
         rb.linearVelocity = LastmoveInput.normalized * dashSpeed;
-        yield return waitForSeconds;
+        yield return new WaitForSeconds(dashWaitTime);
         CheckMovementKeys();
     }
     public void CheckMovementKeys()

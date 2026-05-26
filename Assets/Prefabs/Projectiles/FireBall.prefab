@@ -193,7 +193,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   damage: 40
   animator: {fileID: 2608240150511912563}
-  explostionRadius: 2
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  explostionRadius: 2
+  fireBallImpactSfx: {fileID: 8300000, guid: 521bf4e55c8bcd24380bdf6292665c58, type: 3}

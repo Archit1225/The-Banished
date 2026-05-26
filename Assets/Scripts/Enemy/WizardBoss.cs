@@ -18,7 +18,6 @@ public class WizardBoss : MonoBehaviour
     //public Transform attackPoint; //Will be used for Overlap Circle
     //public Transform enemyFacePos;
     public LayerMask playerLayer;
-
     public GameObject player;
     private PlayerHealth playerHealth;
     private Transform playerPos;
@@ -47,6 +46,10 @@ public class WizardBoss : MonoBehaviour
     public int asteroidNumber=10;
     public Transform minTargetPos;
     public Transform maxTargetPos;
+
+    [Header("SoundFx")]
+    [SerializeField] AudioClip teleportSfx;
+
 
     //Asteroid Target
 
@@ -108,6 +111,7 @@ public class WizardBoss : MonoBehaviour
     {
         if (Random.Range(0f, 1f) < chance)
         {
+            AudioManager.instance.PlaySoundFx(teleportSfx, transform, 0.8f);//Teleporting Sound
             float teleportX = Random.Range(minTargetPos.position.x, maxTargetPos.position.x);
             float teleportY = Random.Range(minTargetPos.position.y, maxTargetPos.position.y);
             transform.position = new Vector3(teleportX, teleportY);
@@ -174,7 +178,8 @@ public class WizardBoss : MonoBehaviour
         animator.SetFloat("LastLookDirY", temp.y);
 
         animator.SetTrigger(attackPerforming.animationTrigger);
-
+        //AttakcSfx
+        if (attackPerforming.attackAudio != null) { AudioManager.instance.PlaySoundFx(attackPerforming.attackAudio, transform, 0.8f); }
         Debug.Log(attackPerforming.AttackName);
 
         ChangeState(EnemyStates.Idle);

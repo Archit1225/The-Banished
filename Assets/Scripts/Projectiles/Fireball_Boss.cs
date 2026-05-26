@@ -4,8 +4,9 @@ public class Fireball_Boss : MonoBehaviour
 {
     public float damage;
     public Animator animator;
-    [SerializeField] private float explostionRadius = 2f;
     public LayerMask playerLayer;
+    [SerializeField] private float explostionRadius = 2f;
+    [SerializeField] AudioClip fireBallImpactSfx;
 
     private void Start()
     {
@@ -35,6 +36,7 @@ public class Fireball_Boss : MonoBehaviour
         {
             player.gameObject.GetComponent<PlayerHealth>()?.ChangeHealth(-damage);
         }
+        AudioManager.instance.PlaySoundFx(fireBallImpactSfx, transform, 1f);
         Destroy(gameObject, 1f);
     }
 }

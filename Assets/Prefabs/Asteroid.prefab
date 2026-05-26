@@ -144,6 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AsteroidSpawner
   asteroidSpeed: 12
   damage: 15
+  asteroidExplosionSfx: {fileID: 8300000, guid: a5a66a90b46cc81478e8b9b77b99d368, type: 3}
   targetPos: {x: 0, y: 0, z: 0}
 --- !u!95 &1647717064959906386
 Animator:
