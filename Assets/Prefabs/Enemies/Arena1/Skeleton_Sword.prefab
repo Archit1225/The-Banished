@@ -428,6 +428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Health
   currentHealth: 0
   sfxSlider: {fileID: 2113547371887868261}
+  maxHealth: 0
 --- !u!95 &1635761082915546110
 Animator:
   serializedVersion: 7
@@ -462,6 +463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f88a9902c8416724a8df343933d8a000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyKnockback
+  knockBackForce: 10
 --- !u!114 &-8826175662012708085
 MonoBehaviour:
   m_ObjectHideFlags: 0

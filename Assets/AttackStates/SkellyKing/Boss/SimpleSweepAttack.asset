@@ -16,9 +16,9 @@ MonoBehaviour:
   animationTrigger: SweepAttack
   minRange: 0
   maxRange: 2.5
-  damage: 15
+  damage: 20
   knockbackForce: 5
-  attackCooldown: 2
+  attackCooldown: 1.5
   attackType: 1
   projectilePrefab: {fileID: 0}
   projectileSpeed: 0

@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 5095512723163859347}
   - component: {fileID: 8336271978017701491}
   - component: {fileID: 2189628380504021352}
-  - component: {fileID: -307946556527383549}
   - component: {fileID: 3202881749032378489}
   m_Layer: 7
   m_Name: SkellyBoss
@@ -241,18 +240,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PickUp
   dropInteraction: {fileID: 0}
   dropId: SwordPickup
---- !u!114 &-307946556527383549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 439834857675090133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f88a9902c8416724a8df343933d8a000, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyKnockback
 --- !u!114 &3202881749032378489
 MonoBehaviour:
   m_ObjectHideFlags: 0

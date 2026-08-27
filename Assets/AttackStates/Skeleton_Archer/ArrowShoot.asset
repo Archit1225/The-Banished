@@ -16,7 +16,7 @@ MonoBehaviour:
   animationTrigger: ArrowShoot
   minRange: 0
   maxRange: 5
-  damage: 20
+  damage: 15
   knockbackForce: 0
   attackCooldown: 1
   attackType: 0

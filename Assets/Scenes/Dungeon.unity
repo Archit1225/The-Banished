@@ -429,7 +429,7 @@ Transform:
   m_GameObject: {fileID: 182706282}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.05, y: 5.21, z: 0}
+  m_LocalPosition: {x: 6.64, y: 7.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -835,17 +835,17 @@ MonoBehaviour:
     waves:
     - name: Wave1
       waveNo: 1
-      enemyNo: 6
+      enemyNo: 8
       enemyPrefabs:
       - {fileID: 8036371126034187756, guid: d3951c4b59c4f4b45894c02eaeda5ac7, type: 3}
-      spawnInterval: 2
+      spawnInterval: 1.5
     - name: Wave2
       waveNo: 2
       enemyNo: 8
       enemyPrefabs:
-      - {fileID: 7226575022237189903, guid: 1a115a60913598844a57dea5ced62500, type: 3}
       - {fileID: 8036371126034187756, guid: d3951c4b59c4f4b45894c02eaeda5ac7, type: 3}
-      spawnInterval: 3
+      - {fileID: 7226575022237189903, guid: 1a115a60913598844a57dea5ced62500, type: 3}
+      spawnInterval: 2.5
     bossPrefab: {fileID: 0}
     spawnPoints:
     - {fileID: 2020674129}
@@ -16504,7 +16504,7 @@ Transform:
   m_GameObject: {fileID: 1012262170}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3, y: -1.91, z: 0}
+  m_LocalPosition: {x: -2.94, y: -1.91, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

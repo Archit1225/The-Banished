@@ -9,7 +9,7 @@ public class Wave
     public int waveNo;
     public int enemyNo;
     public List<GameObject> enemyPrefabs;
-    public int spawnInterval;
+    public float spawnInterval;
 }
 
 [System.Serializable]

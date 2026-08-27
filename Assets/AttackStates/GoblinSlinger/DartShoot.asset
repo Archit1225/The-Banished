@@ -16,11 +16,11 @@ MonoBehaviour:
   animationTrigger: DartShoot
   minRange: 0
   maxRange: 5
-  damage: 20
+  damage: 15
   knockbackForce: 0
   attackCooldown: 2
   attackType: 0
   projectilePrefab: {fileID: 5750811843439786569, guid: b6f9b13ffdd56fb4fa751d104ec84a06, type: 3}
-  projectileSpeed: 10
+  projectileSpeed: 15
   lingering_damage: 0
   attackAudio: {fileID: 0}
