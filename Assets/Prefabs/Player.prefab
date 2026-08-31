@@ -276,7 +276,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   attackPoint: {fileID: 524396402949882141}
-  attackDamage: 15
+  attackDamage: 30
   knockBackTime: 0.2
   stunTime: 0.2
   attackRange: 0.5
@@ -503,7 +503,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.49480245, g: 0.5471704, b: 0.7735849, a: 1}
+      maxColor: {r: 0.18934138, g: 0.49854797, b: 0.7660377, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5183,7 +5183,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &643574139416792115
 MonoBehaviour:
@@ -5204,8 +5204,8 @@ MonoBehaviour:
   moveInput: {x: 0, y: 0}
   LastmoveInput: {x: 0, y: 0}
   playerFacingTowards: {fileID: 2202787787425194790}
-  healPower: 20
-  dashSpeed: 25
+  healPower: 45
+  dashSpeed: 30
   dashWaitTime: 0.1
 --- !u!114 &2580494546562701542
 MonoBehaviour:

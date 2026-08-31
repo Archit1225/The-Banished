@@ -187,9 +187,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void Knockback(Transform enemy, float knockbackForce, float stunTime)
     {
+        Vector2 knockBackDir = (transform.position - enemy.position).normalized;
+
         ChangeState(PlayerStates.Knockback);
-        Vector2 enemyDirection = (transform.position - enemy.position).normalized;
-        rb.linearVelocity = enemyDirection * knockbackForce;
+        rb.linearVelocity = knockBackDir * knockbackForce;
         StartCoroutine(knockbackCounter(stunTime));
     }
 

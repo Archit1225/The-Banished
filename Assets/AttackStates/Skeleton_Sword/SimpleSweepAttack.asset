@@ -15,7 +15,7 @@ MonoBehaviour:
   AttackName: SweepAttack
   animationTrigger: SweepAttack
   minRange: 0
-  maxRange: 1.2
+  maxRange: 1.05
   damage: 10
   knockbackForce: 10
   attackCooldown: 1.2

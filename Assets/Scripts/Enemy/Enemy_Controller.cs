@@ -30,6 +30,8 @@ public class Enemy_Controller : MonoBehaviour
     private Vector2 lastLookDir;
     //private List<Attacks> potentialAttacks = new List<Attacks>();
 
+    public float debugRange = 1.2f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -246,6 +248,7 @@ public class Enemy_Controller : MonoBehaviour
         {
             Gizmos.DrawWireSphere(gameObject.transform.position, attackPerforming.maxRange);
         }
+        Gizmos.DrawWireSphere(gameObject.transform.position, debugRange);
         //Gizmos.DrawWireSphere(gameObject.transform.position, 6f);
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }

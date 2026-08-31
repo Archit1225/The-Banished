@@ -350,6 +350,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   attackPerforming: {fileID: 0}
+  debugRange: 1.05
 --- !u!50 &1487995671813309500
 Rigidbody2D:
   serializedVersion: 5

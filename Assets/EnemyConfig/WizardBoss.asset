@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fe5ed017eae9b24a9a7b1c73eb1ff2c, type: 3}
   m_Name: WizardBoss
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttributes
-  enemy_Health: 300
+  enemy_Health: 180
   enemy_Speed: 7
   enemy_Name: Necromancer
   enemyType: 1
